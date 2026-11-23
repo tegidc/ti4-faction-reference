@@ -13,7 +13,7 @@
   body {
     margin:0; color:var(--ink); font-family:Inter, system-ui, sans-serif;
     background: radial-gradient(ellipse at center, #1a2240 0%, var(--bg) 65%) fixed; background-color:var(--bg);
-    display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto auto minmax(0,1fr) auto; gap:var(--gap); padding:var(--gap);
+    display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto minmax(0,1fr) auto; gap:var(--gap); padding:var(--gap);
     height:100vh; height:100dvh; overflow:hidden;
     -webkit-tap-highlight-color:transparent;
   }
@@ -204,6 +204,35 @@
   /* locked leaders on a game tab */
   .gal .ld.locked img { opacity:.35; filter:grayscale(.7); }
   .gal .ld .was { color:var(--dim); }
+  /* top row: burger + faction row */
+  .toprow { display:flex; align-items:flex-start; gap:8px; min-width:0; }
+  .toprow .row { flex:1; min-width:0; }
+  .burger {
+    flex:0 0 auto; position:relative; width:42px; height:42px; margin-top:6px; border-radius:12px; cursor:pointer;
+    background:rgba(20,26,42,.8); border:1px solid rgba(138,148,173,.3); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  }
+  .burger:hover { border-color:var(--acc); }
+  .burger span { display:block; width:18px; height:2px; border-radius:1px; background:var(--ink); }
+  .burger b { position:absolute; top:46px; left:50%; transform:translateX(-50%); font:600 9.5px Inter, sans-serif; color:var(--acc); white-space:nowrap; max-width:70px; overflow:hidden; text-overflow:ellipsis; }
+  .scrim { position:fixed; inset:0; z-index:40; background:rgba(5,7,12,.55); opacity:0; pointer-events:none; transition:opacity .18s; }
+  .drawer {
+    position:fixed; z-index:45; top:0; left:0; bottom:0; width:min(320px, 86vw); background:#111727; border-right:1px solid rgba(138,148,173,.25);
+    padding:14px 16px; overflow-y:auto; transform:translateX(-102%); transition:transform .2s ease; box-shadow:8px 0 30px rgba(0,0,0,.5);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  body.drawer-open .drawer { transform:none; } body.drawer-open .scrim { opacity:1; pointer-events:auto; }
+  .dhead { display:flex; align-items:center; justify-content:space-between; font:800 13px Orbitron, sans-serif; letter-spacing:.03em; }
+  .dclose { background:none; border:none; color:var(--dim); font-size:18px; cursor:pointer; padding:4px; }
+  .drawer h3 { margin:6px 0 0; font:600 10.5px Inter, sans-serif; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
+  .drawer .search { flex:0 0 auto; min-width:0; }
+  .drawer .search input { width:100%; }
+  .drawer .list { position:static; width:auto; max-height:none; box-shadow:none; margin-top:6px; background:rgba(11,14,23,.6); }
+  .drawer .seg { flex-direction:column; border-radius:12px; padding:4px; max-width:none; overflow:visible; }
+  .drawer .seg button { text-align:left; border-radius:9px; padding:9px 12px; font-size:12.5px; display:flex; align-items:center; gap:8px; }
+  .drawer .groups .gamebtn b { margin-left:auto; }
+  .drawer .eds { flex-direction:row; flex-wrap:wrap; }
+  .drawer .eds button.edt { flex:1 1 45%; }
+  .dfoot { margin-top:auto; font-size:10.5px; color:#4d5672; line-height:1.4; }
   .credit { position:fixed; right:10px; bottom:4px; font-size:10px; color:#4d5672; }
 
   /* ---------- zoom ---------- */
@@ -247,6 +276,7 @@
     .views { width:100%; }
     .views button { flex:1; padding:8px 4px; font-size:11px; }
     .credit { display:none; }
+    .burger { width:38px; height:38px; margin-top:6px; } .burger b { top:42px; }
     .board-wrap { margin:4px 0; }
     table.lb { font-size:13px; } table.lb col.c-p { width:31%; } table.lb col.c-vp { width:15%; }
     table.lb th { padding:9px 2px; } table.lb td { padding:9px 2px; } table.lb th:first-child, table.lb td:first-child { padding-left:8px; }
@@ -257,16 +287,24 @@
 </style>
 </head>
 <body>
-<header class="bar">
-  <div class="seg groups" id="groups" role="tablist" aria-label="Faction groups"></div>
-  <div class="seg eds" id="eds" aria-label="Expansions shown"></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Games, expansions and search">
+  <div class="dhead"><span>TI4 Faction Quick Reference</span><button class="dclose" id="dclose" aria-label="Close">✕</button></div>
   <div class="search">
     <input id="q" type="search" placeholder="Find a faction…" autocomplete="off" spellcheck="false" aria-label="Find a faction">
     <div class="list" id="list" role="listbox"></div>
   </div>
-</header>
+  <h3>Show</h3>
+  <div class="seg groups" id="groups" role="tablist" aria-label="Games"></div>
+  <h3>Expansions</h3>
+  <div class="seg eds" id="eds" aria-label="Expansions shown"></div>
+  <p class="dfoot">Unofficial fan reference · Twilight Imperium © Fantasy Flight Games · card scans via ti4.basicallyfine.com · game data via AsyncTI4</p>
+</aside>
 
-<nav class="row" id="row" aria-label="Factions"></nav>
+<div class="toprow">
+  <button class="burger" id="burger" aria-label="Games, expansions and search" title="Games, expansions and search (/)"><span></span><span></span><span></span><b id="ctx"></b></button>
+  <nav class="row" id="row" aria-label="Factions"></nav>
+</div>
 
 <div class="viewbar">
   <div class="seg views" id="views" role="tablist" aria-label="View">
@@ -388,12 +426,13 @@ function buildTabs(){
   const mk = (label, g, cls) => {
     const b = document.createElement('button'); b.innerHTML = label; b.dataset.g = g; if (cls) b.className = cls;
     b.classList.toggle('on', g === group);
-    b.onclick = () => g === 'add' ? openAdd() : setGroup(g);
+    b.onclick = () => { closeDrawer(); g === 'add' ? openAdd() : setGroup(g); };
     box.appendChild(b); return b;
   };
   mk('All factions', ALL);
+  $('ctx').textContent = group >= 0 && games[group] ? games[group].code : '';
   games.forEach((g, gi) => { mk(`${esc(g.code)} <b>${g.factions.length}</b>`, gi, 'gamebtn').title = g.title ? `${g.code}: ${g.title}` : g.code; });
-  mk('+ Game', 'add', 'addbtn').title = 'Add a game: paste it from AsyncTI4, or star factions yourself';
+  mk('+ Add a game', 'add', 'addbtn').title = 'Add a game: paste it from AsyncTI4, or star factions yourself';
 }
 
 let clearArmed = false;
@@ -444,6 +483,8 @@ function setGroup(gi){
   markActive();
   row.scrollLeft = 0;
   if (current === LB){ if (gi >= 0 && g.factions.length) showBoard(pinned); else unpin(); }
+  // switching to a game tab while looking at a faction that isn't in it: open on the leaderboard
+  else if (gi >= 0 && g.factions.length && !(current >= 0 && inGame(current, g))) showBoard(true);
 }
 // mouse wheel scrolls the row sideways; drag to scroll on desktop too
 row.addEventListener('wheel', e => {
@@ -611,7 +652,7 @@ function setView(v){
 
 function show(i, dir){
   const f = F[i];
-  if (group >= 0 && !inGame(i)) setGroup(ALL);
+  if (group >= 0 && !inGame(i)){ if (current === LB) current = -1; setGroup(ALL); }
   const same = i === current;
   current = i; markActive();
   document.body.classList.add('chosen'); document.body.classList.remove('board');
@@ -839,9 +880,15 @@ function fill(){
   });
   list.innerHTML = html;
 }
-function choose(i){ list.classList.remove('open'); q.value = ''; q.blur(); pin(i); }
-q.addEventListener('focus', () => { fill(); list.classList.add('open'); });
-q.addEventListener('input', () => { fill(); list.classList.add('open'); });
+function choose(i){ list.classList.remove('open'); q.value = ''; q.blur(); closeDrawer(); pin(i); }
+// ---------- side drawer: games, expansions, search ----------
+function openDrawer(focusSearch){ document.body.classList.add('drawer-open'); q.value = ''; list.classList.remove('open'); if (focusSearch) setTimeout(() => q.focus(), 60); }
+function closeDrawer(){ document.body.classList.remove('drawer-open'); q.blur(); }
+$('burger').onclick = e => { e.stopPropagation(); openDrawer(!isPhone()); };
+$('dclose').onclick = closeDrawer; $('scrim').onclick = closeDrawer;
+const syncList = () => { fill(); list.classList.toggle('open', !!q.value.trim()); };   // results only once you type
+q.addEventListener('focus', syncList);
+q.addEventListener('input', syncList);
 q.addEventListener('keydown', e => {
   const bs = [...list.querySelectorAll('button')];
   if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
@@ -849,12 +896,12 @@ q.addEventListener('keydown', e => {
     hi = (hi + (e.key === 'ArrowDown' ? 1 : -1) + bs.length) % bs.length;
     bs.forEach((b, j) => b.classList.toggle('hi', j === hi)); bs[hi]?.scrollIntoView({ block:'nearest' });
   } else if (e.key === 'Enter'){ e.preventDefault(); if (bs[hi]) choose(+bs[hi].dataset.i); }
-  else if (e.key === 'Escape'){ list.classList.remove('open'); q.blur(); }
+  else if (e.key === 'Escape'){ closeDrawer(); }
   e.stopPropagation();
 });
 list.addEventListener('mousedown', e => e.preventDefault());   // keep focus so the click lands
 list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) choose(+b.dataset.i); });
-document.addEventListener('click', e => { if (!e.target.closest('.search')) list.classList.remove('open'); });
+document.addEventListener('click', e => { if (!e.target.closest('.search') && !e.target.closest('.drawer')) list.classList.remove('open'); });
 
 // ---------- stepping: arrows, swipes ----------
 function step(dir){
@@ -881,13 +928,14 @@ stage.addEventListener('click', e => { if (swiped){ e.stopImmediatePropagation()
 
 document.addEventListener('keydown', e => {
   if (zoom.classList.contains('open')){ if (e.key === 'Escape') zoom.classList.remove('open'); return; }
+  if (document.body.classList.contains('drawer-open')){ if (e.key === 'Escape') closeDrawer(); return; }
   if (e.key === 'ArrowRight') step(1);
   else if (e.key === 'ArrowLeft') step(-1);
   else if (e.key === 'Escape') unpin();
   else if (e.key === '1') setView('overview');
   else if (e.key === '2') setView('units');
   else if (e.key === '3') setView('special');
-  else if (e.key === '/'){ e.preventDefault(); q.focus(); }
+  else if (e.key === '/'){ e.preventDefault(); openDrawer(true); }
 });
 
 // ---------- link to a faction: #naalu or #naalu-units ----------
