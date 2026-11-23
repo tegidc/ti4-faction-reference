@@ -458,6 +458,9 @@ const edOf = f => f.edition.startsWith('codex') ? 'codex' : f.edition;
 let shownEds = EDS.map(e => e.k);
 try { const s = JSON.parse(localStorage.getItem('ti4-editions')); if (Array.isArray(s) && s.length) shownEds = s.filter(k => EDS.some(e => e.k === k)); } catch (_) {}
 const visible = f => shownEds.includes(edOf(f));
+// Thunder's Edge changed some cards and added breakthroughs. On a game tab, follow that game; otherwise the TE tick box.
+const useTE = () => { const g = group >= 0 && games[group]; return g && g.meta && typeof g.meta.te === 'boolean' ? g.meta.te : shownEds.includes('te'); };
+const cardsOf = (f, v) => f[v].filter(it => it.te === undefined || it.te === useTE());
 const visibleList = () => F.filter(visible);
 function buildEds(){
   const box = $('eds'); box.innerHTML = '';
@@ -470,7 +473,7 @@ function buildEds(){
       if (on && shownEds.length === 1) return;   // keep at least one
       shownEds = on ? shownEds.filter(k => k !== e.k) : [...shownEds, e.k];
       try { localStorage.setItem('ti4-editions', JSON.stringify(shownEds)); } catch (_) {}
-      buildEds(); if (group === ALL) setGroup(ALL);
+      buildEds(); if (group === ALL){ setGroup(ALL); if (current >= 0) render(); }
     };
     box.appendChild(b);
   });
@@ -652,7 +655,7 @@ function statsOf(p){
     frags:(p.fragments || []).reduce((a, f) => { const k = String(f).slice(0, 1); if ('chiu'.includes(k)) a[k] = (a[k] || 0) + 1; return a; }, {}) };
 }
 // AsyncTI4 game data -> a game tab (factions, players, stats, whose turn)
-const DATA_V = 4;   // bump when gameFromData keeps new fields, so saved games refetch once
+const DATA_V = 5;   // bump when gameFromData keeps new fields, so saved games refetch once
 function gameFromData(d, name){
   const factions = [], pl = {}, unknown = [];
   (d.playerData || []).forEach(p => {
@@ -667,7 +670,8 @@ function gameFromData(d, name){
   const ob = d.objectives || {}, objs = [];
   [['stage1Objectives', 'I'], ['stage2Objectives', 'II']].forEach(([key, st]) => (ob[key] || []).forEach(o =>
     objs.push({ st, name:o.revealed ? o.name : '', pv:o.pointValue || (st === 'I' ? 1 : 2), scored:(o.scoredFactions || []).map(keyOf).filter(Boolean) })));
-  const meta = { objs, sc, vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
+  const te = (d.playerData || []).some(p => p.breakthrough) || factions.some(k => (F.find(f => f.key === k) || {}).edition === 'te');
+  const meta = { te, objs, sc, vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
     active:st.activePlayer || '', phase:st.phase || '', turnAt:st.turnStartedAt || 0, winner:st.winner || null };
   return { g:{ v:DATA_V, code:name || d.gameName, title:d.gameCustomName || '', factions, players:pl, meta, pasted:Date.now() }, unknown };
 }
@@ -825,7 +829,7 @@ function show(i, dir){
   current = i; markActive();
   document.body.classList.add('chosen'); document.body.classList.remove('board');
   // * on Units when the faction has its own unit beyond flagship + mech (it has a unit-upgrade tech)
-  const ub = $('views').querySelector('[data-v="units"]'), sp = f.units.filter(it => it.kind === 'Unit upgrade');
+  const ub = $('views').querySelector('[data-v="units"]'), sp = cardsOf(f, 'units').filter(it => it.kind === 'Unit upgrade');
   ub.classList.toggle('special', sp.length > 0);
   ub.title = sp.length ? 'Has a faction-specific unit (with its own upgrade tech)' : '';
   $('title').innerHTML = `${f.name} <button class="star" id="star"></button><small>${f.full} · ${ED[f.edition] || ''}</small>`;
@@ -906,7 +910,7 @@ function noteInfo(id, g){
   }
   const ownerKey = Object.keys(g.players).find(k => ((g.players[k].stats || {}).pnOwn || []).includes(id));
   const f = ownerKey && F.find(x => x.key === ownerKey);
-  const pns = f ? f.special.filter(it => it.kind === 'Promissory note' && !/^plot/.test(it.key)) : [];
+  const pns = f ? cardsOf(f, 'special').filter(it => it.kind === 'Promissory note' && !/^plot/.test(it.key)) : [];
   const word = String(id).split('_')[0];
   const card = pns.find(it => it.key.includes(word)) || pns[0];
   return { generic:false, name:card ? card.kind : String(id).replace(/_/g, ' '), src:card && card.src, color:ownerKey ? dotColor(g.players[ownerKey].color) : '#8a94ad', giver:ownerKey ? g.players[ownerKey].user : '' , faction:f ? f.sort : '' };
@@ -970,8 +974,8 @@ function showTrades(doPin, dir){
   $('title').innerHTML = `Trades<small>${esc(g.title || g.code)} · each player's promissory notes and commander (an Alliance shares an unlocked commander)</small>`;
   const cols = gameList(g).map(f => {
     const p = g.players[f.key] || {}, st = p.stats;
-    const pns = f.special.filter(it => it.kind === 'Promissory note' && !/^plot/.test(it.key));
-    const cmd = f.special.filter(it => it.role === 'commander');
+    const pns = cardsOf(f, 'special').filter(it => it.kind === 'Promissory note' && !/^plot/.test(it.key));
+    const cmd = cardsOf(f, 'special').filter(it => it.role === 'commander');
     return { f, p, locked: st && st.leaders && st.leaders.commander === 'locked', unlocked: st && st.leaders && st.leaders.commander === 'unlocked', pns, cmd };
   });
   const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
@@ -1206,9 +1210,9 @@ function render(dir){
   if (current === LB) return showBoard(pinned, dir);
   if (current === SC) return showStrategy(pinned, dir);
   if (current === TR) return showTrades(pinned, dir);
-  const f = F[current], hasSheet = f[view].some(it => it.kind === 'Faction sheet');
+  const f = F[current], cards = cardsOf(f, view), hasSheet = cards.some(it => it.kind === 'Faction sheet');
   // next to a faction sheet, smaller cards (mech) show at ~60% of its height
-  const items = f[view].map(it => ({ ...it, s: hasSheet && it.kind !== 'Faction sheet' ? .6 : 1 }));
+  const items = cards.map(it => ({ ...it, s: hasSheet && it.kind !== 'Faction sheet' ? .6 : 1 }));
   const gal = document.createElement('div');
   gal.className = 'gal' + (items.length > 1 ? ' multi' : '') + (dir ? (dir > 0 ? ' from-right' : ' from-left') : '');
   const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
@@ -1263,7 +1267,7 @@ let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() 
 // ---------- zoom ----------
 function openZoom(src){
   // desktop, single card already filling the stage: a click means "let go"
-  if (!isPhone() && current >= 0 && F[current][view].length === 1 && pinned){ unpin(); return; }
+  if (!isPhone() && current >= 0 && cardsOf(F[current], view).length === 1 && pinned){ unpin(); return; }
   if (!pinned && current >= 0) pin(current);
   zoom.querySelector('img').src = src; zoom.classList.remove('big'); zoom.classList.add('open');
 }

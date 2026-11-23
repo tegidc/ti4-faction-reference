@@ -7,11 +7,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/arborec/reference-card-arborec.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/arborec/reference-card-te-arbo.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -78,7 +87,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/arborec/thumb.webp"
@@ -91,11 +101,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/argent/reference-card-argent.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/argent/reference-card-te-argent.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -162,7 +181,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/argent/thumb.webp"
@@ -175,11 +195,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/creuss/reference-card-ghosts.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/creuss/reference-card-te-creus.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -246,7 +275,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/creuss/thumb.webp"
@@ -462,11 +492,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/empyrean/reference-card-empyrean.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/empyrean/reference-card-te-empyrean.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -540,7 +579,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/empyrean/thumb.webp"
@@ -735,11 +775,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/hacan/reference-card-hacan.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/hacan/reference-card-te-hacan.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -806,7 +855,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/hacan/thumb.webp"
@@ -819,11 +869,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/jol-nar/reference-card-jol-nar.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/jol-nar/reference-card-te-jolnar.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -876,7 +935,8 @@
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "commander-front"
+    "key": "commander-front",
+    "te": true
    },
    {
     "src": "cards/jol-nar/leader-jolnar-hero.webp",
@@ -890,7 +950,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/jol-nar/thumb.webp"
@@ -903,27 +964,54 @@
   "edition": "codex3",
   "overview": [
    {
+    "src": "cards/keleres/reference-card-keleres.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/keleres/reference-card-te-keleres.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
+   {
+    "src": "cards/keleres/sheet-keleres.webp",
+    "w": 1290,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet",
+    "te": false
+   },
    {
     "src": "cards/keleres/sheet-keleres-te.webp",
     "w": 1800,
     "h": 1213,
     "kind": "Faction sheet",
-    "key": "sheet"
+    "key": "sheet",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/mech-keleres-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech",
+    "te": false
    },
    {
     "src": "cards/keleres/mech-keleres-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Mech",
-    "key": "mech"
+    "key": "mech",
+    "te": true
    }
   ],
   "special": [
@@ -939,14 +1027,24 @@
     "w": 750,
     "h": 500,
     "kind": "Faction tech",
-    "key": "tech-xo"
+    "key": "tech-xo",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/tech-keleres-tech-asn.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "asn",
+    "te": false
    },
    {
     "src": "cards/keleres/tech-keleres-asn-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Faction tech",
-    "key": "asn"
+    "key": "asn",
+    "te": true
    },
    {
     "src": "cards/keleres/promissory-note-keleres-pn.webp",
@@ -956,60 +1054,124 @@
     "key": "pn"
    },
    {
+    "src": "cards/keleres/leader-keleres-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent",
+    "te": false
+   },
+   {
     "src": "cards/keleres/leader-keleres-agent-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "agent"
+    "key": "agent",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/leader-keleres-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front",
+    "te": false
    },
    {
     "src": "cards/keleres/leader-keleres-commander-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "commander-front"
+    "key": "commander-front",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/leader-keleres-hero-argent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero-argent",
+    "te": false
    },
    {
     "src": "cards/keleres/leader-keleres-argent-hero-te.webp",
     "w": 750,
     "h": 487,
     "kind": "Leader",
-    "key": "hero-argent"
+    "key": "hero-argent",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/leader-keleres-hero-mentak.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero-mentak",
+    "te": false
    },
    {
     "src": "cards/keleres/leader-keleres-mentak-hero-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "hero-mentak"
+    "key": "hero-mentak",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/leader-keleres-hero-xxcha.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero-xxcha",
+    "te": false
    },
    {
     "src": "cards/keleres/leader-keleres-xxcha-hero-te.webp",
     "w": 750,
     "h": 487,
     "kind": "Leader",
-    "key": "hero-xxcha"
+    "key": "hero-xxcha",
+    "te": true
    },
    {
     "src": "cards/keleres/breakthrough-keleres.webp",
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/planet-keleres-tech-custodia-planet.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "iihq-planet",
+    "te": false
    },
    {
     "src": "cards/keleres/planet-keleres-tech-custodia-planet-te.webp",
     "w": 500,
     "h": 750,
     "kind": "Planet",
-    "key": "iihq-planet"
+    "key": "iihq-planet",
+    "te": true
+   },
+   {
+    "src": "cards/keleres/legendary-planet-ability-keleres-tech-custodia-ability.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Legendary planet",
+    "key": "iihq-planet-ability",
+    "te": false
    },
    {
     "src": "cards/keleres/legendary-planet-ability-keleres-tech-custodia-ability-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Legendary planet",
-    "key": "iihq-planet-ability"
+    "key": "iihq-planet-ability",
+    "te": true
    }
   ],
   "thumb": "cards/keleres/thumb.webp"
@@ -1022,11 +1184,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/l1z1x/reference-card-l1.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/l1z1x/reference-card-te-l1.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1093,7 +1264,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/l1z1x/thumb.webp"
@@ -1197,11 +1369,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/letnev/reference-card-barony.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/letnev/reference-card-te-letnev.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1268,7 +1449,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/letnev/thumb.webp"
@@ -1281,11 +1463,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/mahact/reference-card-mahact.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/mahact/reference-card-te-mahact.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1352,7 +1543,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/mahact/thumb.webp"
@@ -1365,11 +1557,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/mentak/reference-card-mentak.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/mentak/reference-card-te-mentak.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1436,7 +1637,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough-front"
+    "key": "breakthrough-front",
+    "te": true
    }
   ],
   "thumb": "cards/mentak/thumb.webp"
@@ -1449,11 +1651,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/muaat/reference-card-muaat.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/muaat/reference-card-te-muaat.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1520,21 +1731,24 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    },
    {
     "src": "cards/muaat/planet-muaat-avernus.webp",
     "w": 500,
     "h": 750,
     "kind": "Planet",
-    "key": "avernus-planet"
+    "key": "avernus-planet",
+    "te": true
    },
    {
     "src": "cards/muaat/legendary-planet-ability-muaat-avernus-ability.webp",
     "w": 750,
     "h": 500,
     "kind": "Legendary planet",
-    "key": "avernus-ability"
+    "key": "avernus-ability",
+    "te": true
    }
   ],
   "thumb": "cards/muaat/thumb.webp"
@@ -1547,11 +1761,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/naalu/reference-card-naalu.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/naalu/reference-card-te-naalu.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1563,11 +1786,20 @@
     "key": "sheet"
    },
    {
+    "src": "cards/naalu/mech-naalu-mech-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech",
+    "te": false
+   },
+   {
     "src": "cards/naalu/mech-naalu-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Mech",
-    "key": "mech"
+    "key": "mech",
+    "te": true
    }
   ],
   "special": [
@@ -1593,18 +1825,36 @@
     "key": "pn"
    },
    {
+    "src": "cards/naalu/leader-naalu-agent-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent",
+    "te": false
+   },
+   {
     "src": "cards/naalu/leader-naalu-agent-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "agent"
+    "key": "agent",
+    "te": true
+   },
+   {
+    "src": "cards/naalu/leader-naalu-commander-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front",
+    "te": false
    },
    {
     "src": "cards/naalu/leader-naalu-commander-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "commander-front"
+    "key": "commander-front",
+    "te": true
    },
    {
     "src": "cards/naalu/leader-naalu-hero.webp",
@@ -1618,7 +1868,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/naalu/thumb.webp"
@@ -1631,11 +1882,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/naaz-rokha/reference-card-nra.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/naaz-rokha/reference-card-te-naaz.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1702,7 +1962,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough-front"
+    "key": "breakthrough-front",
+    "te": true
    }
   ],
   "thumb": "cards/naaz-rokha/thumb.webp"
@@ -1715,11 +1976,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/nekro/reference-card-nekro.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/nekro/reference-card-te-nekro.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1786,7 +2056,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/nekro/thumb.webp"
@@ -1799,11 +2070,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/nomad/reference-card-nomad.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/nomad/reference-card-te-nomad.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -1884,7 +2164,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/nomad/thumb.webp"
@@ -1981,11 +2262,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/saar/reference-card-saar.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/saar/reference-card-te-saar.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2052,7 +2342,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/saar/thumb.webp"
@@ -2065,11 +2356,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/norr/reference-card-sardakk.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/norr/reference-card-te-norr.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2136,7 +2436,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/norr/thumb.webp"
@@ -2149,11 +2450,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/sol/reference-card-sol.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/sol/reference-card-te-sol.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2220,7 +2530,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/sol/thumb.webp"
@@ -2233,11 +2544,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/ul/reference-card-titans.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/ul/reference-card-te-ul.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2304,7 +2624,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/ul/thumb.webp"
@@ -2317,11 +2638,20 @@
   "edition": "pok",
   "overview": [
    {
+    "src": "cards/vuilraith/reference-card-cabal.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/vuilraith/reference-card-te-cabal.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2388,7 +2718,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/vuilraith/thumb.webp"
@@ -2401,11 +2732,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/winnu/reference-card-winnu.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/winnu/reference-card-te-winnu.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2472,7 +2812,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/winnu/thumb.webp"
@@ -2485,11 +2826,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/xxcha/reference-card-xxcha.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/xxcha/reference-card-te-xxcha.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2545,18 +2895,28 @@
     "key": "commander-front"
    },
    {
+    "src": "cards/xxcha/leader-xxcha-hero-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero",
+    "te": false
+   },
+   {
     "src": "cards/xxcha/leader-xxcha-hero-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "hero"
+    "key": "hero",
+    "te": true
    },
    {
     "src": "cards/xxcha/breakthrough-xxcha.webp",
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/xxcha/thumb.webp"
@@ -2569,11 +2929,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/yin/reference-card-yin.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/yin/reference-card-te-yin.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2615,32 +2984,60 @@
     "key": "pn"
    },
    {
+    "src": "cards/yin/leader-yin-agent-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent",
+    "te": false
+   },
+   {
     "src": "cards/yin/leader-yin-agent-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "agent"
+    "key": "agent",
+    "te": true
+   },
+   {
+    "src": "cards/yin/leader-yin-commander-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front",
+    "te": false
    },
    {
     "src": "cards/yin/leader-yin-commander-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "commander-front"
+    "key": "commander-front",
+    "te": true
+   },
+   {
+    "src": "cards/yin/leader-yin-hero-omega.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero",
+    "te": false
    },
    {
     "src": "cards/yin/leader-yin-hero-te.webp",
     "w": 750,
     "h": 500,
     "kind": "Leader",
-    "key": "hero"
+    "key": "hero",
+    "te": true
    },
    {
     "src": "cards/yin/breakthrough-yin.webp",
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/yin/thumb.webp"
@@ -2653,11 +3050,20 @@
   "edition": "base",
   "overview": [
    {
+    "src": "cards/yssaril/reference-card-yssaril.webp",
+    "w": 1080,
+    "h": 775,
+    "kind": "reference-card",
+    "key": "reference-card",
+    "te": false
+   },
+   {
     "src": "cards/yssaril/reference-card-te-yssaril.webp",
     "w": 1000,
     "h": 583,
     "kind": "reference-card",
-    "key": "reference-card"
+    "key": "reference-card",
+    "te": true
    }
   ],
   "units": [
@@ -2724,7 +3130,8 @@
     "w": 750,
     "h": 500,
     "kind": "Breakthrough",
-    "key": "breakthrough"
+    "key": "breakthrough",
+    "te": true
    }
   ],
   "thumb": "cards/yssaril/thumb.webp"

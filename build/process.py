@@ -31,20 +31,35 @@ def conv(src, dst, maxd):
 res = []
 for f in json.load(open(fj)):
     k = f['key']; d = os.path.join(out, k); os.makedirs(d, exist_ok=True)
-    best = {}
+    # keep the best Thunder's Edge version and the best pre-TE version of each card, flagged, so the page can show
+    # whichever matches the game being played (te=True: TE only, te=False: pre-TE only, no flag: same in both)
+    groups = {}
     for c in f['components']:
         if c['type'] == 'tokens': continue
         t = 'reference-card' if c['type'].startswith('reference-card') else c['type']
         if t == 'leader' and 'commander-back' in c['key'] or c['key'].endswith('-back') : continue
-        kk = (t, c['key'])
-        if kk not in best or rank(c) > rank(best[kk]): best[kk] = c
+        groups.setdefault((t, c['key']), []).append(c)
+    TEFLAG = {}
+    best = {}
+    for kk, cs in groups.items():
+        te = [c for c in cs if c.get('edition') == 'te']; pre = [c for c in cs if c.get('edition') != 'te']
+        if te and pre:
+            a, b = max(pre, key=rank), max(te, key=rank)
+            best[kk + ('pre',)] = a; TEFLAG[id(a)] = False
+            best[kk + ('te',)] = b; TEFLAG[id(b)] = True
+        elif te:
+            b = max(te, key=rank); best[kk] = b; TEFLAG[id(b)] = True
+        else:
+            best[kk] = max(pre, key=rank)
     def item(c, maxd):
         src = os.path.join(raw, c['image_path'])
         name = re.sub(r'\.(jpg|png|jpeg)$', '.webp', os.path.basename(c['image_path']))
         name = re.sub(r'[^a-z0-9.-]', '', (c['type'] + '-' + name.replace('.face', '')).lower())
         w, h = conv(src, os.path.join(d, name), maxd)
         t = 'reference-card' if c['type'].startswith('reference-card') else c['type']
-        return dict(src=f'cards/{k}/{name}', w=w, h=h, kind=LABEL.get(t, t), key=c['key'])
+        rec = dict(src=f'cards/{k}/{name}', w=w, h=h, kind=LABEL.get(t, t), key=c['key'])
+        if id(c) in TEFLAG: rec['te'] = TEFLAG[id(c)]
+        return rec
     comps = list(best.values())
     ref = [c for c in comps if c['type'].startswith('reference-card')]
     sheets = [c for c in comps if c['type']=='sheet']
@@ -55,7 +70,8 @@ for f in json.load(open(fj)):
         units=[item(c,1800) for c in sheets]+[item(c,900) for c in mechs],
         special=[item(c,900) for c in special])
     # thumbnail: portrait crop from TE reference card's top-left corner
-    rc = os.path.join(raw, ref[-1]['image_path']); im = Image.open(rc).convert('RGB')
+    refte = [c for c in ref if c['type'] == 'reference-card-te'] or ref
+    rc = os.path.join(raw, refte[-1]['image_path']); im = Image.open(rc).convert('RGB')
     W, H = im.size; crop = im.crop((int(W*.005), 0, int(W*.235), int(H*.30)))
     crop.thumbnail((160,160), Image.LANCZOS); crop.save(os.path.join(d,'thumb.webp'),'WEBP',quality=80)
     entry['thumb'] = f'cards/{k}/thumb.webp'
