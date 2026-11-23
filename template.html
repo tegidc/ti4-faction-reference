@@ -186,6 +186,10 @@
   .gal .ld.sc figcaption { -webkit-line-clamp:1; font-size:12px; }
   .gal .ld.sc figcaption b { color:var(--acc); }
   .gal .ld.sc.played img { opacity:.45; filter:grayscale(.6); }
+  .gal .ld.sc { position:relative; }
+  .tgs { position:absolute; right:3%; bottom:calc(30px + 3%); flex-direction:column-reverse; display:flex; align-items:center; gap:3px; filter:drop-shadow(0 2px 4px rgba(0,0,0,.8)); pointer-events:none; }
+  .tgs .tg { width:clamp(22px, 3.2vw, 38px); height:auto; }
+  .tgs b { color:#ffe08a; font:800 15px Inter, sans-serif; margin-left:2px; }
   .board-wrap { width:min(100%, 860px); margin:auto; animation:pop .14s ease; align-self:center; }
   .board-wrap.from-right { animation:fromRight .18s ease; } .board-wrap.from-left { animation:fromLeft .18s ease; }
   table.lb { width:100%; border-collapse:collapse; table-layout:fixed; font-size:15px; background:rgba(20,26,42,.75); border-radius:14px; overflow:hidden; }
@@ -727,6 +731,8 @@ function show(i, dir){
 }
 // ---------- leaderboard: the game's standings, shown in the big middle space ----------
 // ---------- strategy cards: the 8 cards; on a game tab, who picked which ----------
+// a trade good token: gold coin with the TI4-style hexagon in the middle
+const TG_ICON = '<svg viewBox="0 0 32 32" class="tg"><circle cx="16" cy="16" r="15" fill="#e8b93a" stroke="#7a5408" stroke-width="1.5"/><circle cx="16" cy="16" r="11.5" fill="none" stroke="#a87a14" stroke-width="1.2"/><path d="M16 9.5l5.6 3.25v6.5L16 22.5l-5.6-3.25v-6.5z" fill="#fff3c4" stroke="#7a5408" stroke-width="1.2"/></svg>';
 const SCOL = { 1:'#e5453a', 2:'#f08a24', 3:'#f2c518', 4:'#3fb54a', 5:'#19b3a6', 6:'#2fa4e7', 7:'#2e5ad6', 8:'#9b4fd6' };
 const SNAME = { 1:'Leadership', 2:'Diplomacy', 3:'Politics', 4:'Construction', 5:'Trade', 6:'Warfare', 7:'Technology', 8:'Imperial' };
 function showStrategy(doPin, dir){
@@ -754,7 +760,9 @@ function showStrategy(doPin, dir){
       if (pk){
         const p = pk.by && g.players[pk.by], f = pk.by && F.find(x => x.key === pk.by);
         if (pk.played) fig.classList.add('played');
-        fig.insertAdjacentHTML('beforeend', `<figcaption>${p ? `<span class="pdot" style="background:${dotColor(p.color)}"></span>${esc(p.user)} <span class="was">(${f ? f.sort : ''})</span>${pk.played ? ' · <b>played</b>' : ''}` : `<span class="was">not picked</span>${pk.tg ? ` · <b>+${pk.tg} TG</b>` : ''}`}</figcaption>`);
+        fig.insertAdjacentHTML('beforeend', `<figcaption>${p ? `<span class="pdot" style="background:${dotColor(p.color)}"></span>${esc(p.user)} <span class="was">(${f ? f.sort : ''})</span>${pk.played ? ' · <b>played</b>' : ''}` : '&nbsp;'}</figcaption>`);
+        // trade goods sitting on a card nobody has picked: one coin per trade good, on the card itself
+        if (!p && pk.tg) fig.insertAdjacentHTML('beforeend', `<span class="tgs" title="${pk.tg} trade good${pk.tg > 1 ? 's' : ''} on this card">${TG_ICON.repeat(Math.min(pk.tg, 4))}${pk.tg > 4 ? `<b>×${pk.tg}</b>` : ''}</span>`);
       }
       r.appendChild(fig);
     });
