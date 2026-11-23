@@ -185,7 +185,10 @@
   .sct em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
   .gal .ld.sc figcaption { -webkit-line-clamp:1; font-size:12px; }
   .gal .ld.sc figcaption b { color:var(--acc); }
-  .gal .ld.sc.played img { opacity:.45; filter:grayscale(.6); }
+  /* picked and not yet played: full colour. played: kept in colour but darkened. not picked: black and white, ghosted */
+  .gal .ld.sc.played img { filter:brightness(.5) saturate(.8); }
+  .gal .ld.sc.unpicked img { opacity:.4; filter:grayscale(1) brightness(.85); }
+  .gal .ld.sc.unpicked img:hover, .gal .ld.sc.played img:hover { opacity:1; filter:none; }
   .gal .ld.sc { position:relative; }
   /* trades */
   .trades { display:flex; justify-content:center; align-items:flex-start; gap:var(--gap); width:100%; animation:pop .14s ease; }
@@ -805,6 +808,7 @@ function showStrategy(doPin, dir){
       if (pk){
         const p = pk.by && g.players[pk.by], f = pk.by && F.find(x => x.key === pk.by);
         if (pk.played) fig.classList.add('played');
+        if (!p) fig.classList.add('unpicked');
         fig.insertAdjacentHTML('beforeend', `<figcaption>${p ? `<span class="pdot" style="background:${dotColor(p.color)}"></span>${esc(p.user)} <span class="was">(${f ? f.sort : ''})</span>${pk.played ? ' · <b>played</b>' : ''}` : '&nbsp;'}</figcaption>`);
         // trade goods sitting on a card nobody has picked: one coin per trade good, on the card itself
         if (!p && pk.tg) fig.insertAdjacentHTML('beforeend', `<span class="tgs" title="${pk.tg} trade good${pk.tg > 1 ? 's' : ''} on this card">${TG_ICON.repeat(Math.min(pk.tg, 4))}${pk.tg > 4 ? `<b>×${pk.tg}</b>` : ''}</span>`);
