@@ -189,6 +189,8 @@
   .gal .ld.sc.played img { filter:brightness(.5) saturate(.8); }
   .gal .ld.sc.unpicked img { opacity:.4; filter:grayscale(1) brightness(.85); }
   .gal .ld.sc.unpicked img:hover, .gal .ld.sc.played img:hover { opacity:1; filter:none; }
+  .gal .ld.sc.unpicked .tgs { opacity:.5; filter:saturate(.6) drop-shadow(0 2px 3px rgba(0,0,0,.6)); transition:opacity .15s; }   /* coins faded with the card */
+  .gal .ld.sc.unpicked:hover .tgs { opacity:1; }
   .gal .ld.sc { position:relative; }
   /* trades */
   .trades { display:flex; justify-content:center; align-items:flex-start; gap:var(--gap); width:100%; animation:pop .14s ease; }
