@@ -223,6 +223,14 @@
   .pngen p { margin:0; font-size:12.5px; line-height:1.4; color:#dfe4ef; }
   .pnfrom { font-size:12px; color:#c3cadb; margin-top:6px; }
   .relic { display:inline-flex; align-items:center; gap:3px; font-size:11.5px; color:#ffd88a; white-space:nowrap; } .relic.ex { opacity:.5; }
+  .trades.tgrid { display:grid; justify-content:center; align-items:start; column-gap:var(--gap); row-gap:var(--gap); }
+  .trades.tgrid .gcell { align-self:stretch; display:flex; } .trades.tgrid .gcell .goods { flex:1; }
+  .pnstack { display:grid; }
+  .pnstack .tcard { grid-area:1 / 1; position:relative; transition:transform .12s ease; }
+  .pnstack .tcard:hover { z-index:10 !important; transform:translateY(-3px); }
+  .tradewrap { width:100%; align-self:center; }
+  .tnote { max-width:860px; margin:12px auto 0; font-size:12px; line-height:1.45; color:var(--dim); text-align:center; }
+  .tnote b { color:#c3cadb; font-weight:600; }
   .tcard { margin:0; } .tcard img { width:100%; height:auto; display:block; border-radius:8px; cursor:zoom-in; filter:drop-shadow(0 0 12px rgba(80,130,255,.22)); }
   .tcard figcaption { font-size:11.5px; color:#c3cadb; margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .tcard.locked img { opacity:.35; filter:grayscale(.7); }
@@ -334,8 +342,8 @@
     .credit { display:none; }
     .trades { flex-direction:column; align-items:stretch; }
     .tcol { display:grid; grid-template-columns:1fr 1.6fr; align-items:start; gap:8px; }
-    .tcol .thead, .tcol .goods { grid-column:1 / -1; }
-    .tcol .tcard.cmd { grid-column:2; grid-row:3; } .tcol .tcard.pn { grid-column:1; }
+    .tcol .thead, .tcol .gcell { grid-column:1 / -1; }
+    .tcol .ccell { grid-column:2; grid-row:3; } .tcol .pnstack { grid-column:1; grid-row:3; }
     .tcard figcaption { white-space:normal; }
     .burger { width:38px; height:38px; margin-top:6px; } .burger b { top:42px; }
     .board-wrap { margin:4px 0; }
@@ -933,34 +941,56 @@ function showTrades(doPin, dir){
     return { f, p, locked: st && st.leaders && st.leaders.commander === 'locked', unlocked: st && st.leaders && st.leaders.commander === 'unlocked', pns, cmd };
   });
   const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
-  const HEAD = 24, CAP = 22, GOODS = 16 + 27 * Math.max(...cols.map(c => { const s = c.p.stats || {}; return 3 + (s.frags && Object.keys(s.frags).length ? 1 : 0) + (s.relics && s.relics.length ? 1 : 0) + (s.pnPlay && s.pnPlay.length ? 1.4 : 0); })), W = stage.clientWidth, H = stage.clientHeight;
-  // one column per player: notes on top, commander below; size so the tallest column fits
+  const HEAD = 24 + 44, CAP = 22, OFF = .14;   // +44: room for the note under the grid   // OFF: how far each extra promissory note in a stack is offset (share of column width)
+  const GOODS = 16 + 27 * Math.max(...cols.map(c => { const s = c.p.stats || {}; return 3 + (s.frags && Object.keys(s.frags).length ? 1 : 0) + (s.relics && s.relics.length ? 1 : 0) + (s.pnPlay && s.pnPlay.length ? 1.4 : 0); }));
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const pnW = col => col.pns.length > 1 ? 1 - OFF * (col.pns.length - 1) : 1;   // stacked notes shrink a little so the stack fits the column
+  // height of a column's cards per pixel of column width: commander, then the note stack
+  const need = col => col.cmd.reduce((a, it) => a + it.h / it.w, 0) + (col.pns.length ? pnW(col) * col.pns[0].h / col.pns[0].w + OFF * (col.pns.length - 1) : 0);
   let c = (W - gap * (cols.length - 1)) / cols.length;
-  if (!isPhone()){
-    const need = cols.map(col => [...col.pns, ...col.cmd].reduce((a, it) => a + it.h / it.w, 0));
-    const extra = Math.max(...cols.map(col => HEAD + GOODS + CAP * col.cmd.length + gap * (col.pns.length + col.cmd.length + 1)));
-    c = Math.min(c, (H - extra) / Math.max(...need));
-  }
+  if (!isPhone()) c = Math.min(c, (H - HEAD - GOODS - CAP - gap * 4) / Math.max(...cols.map(need)));
   const wrap = document.createElement('div');
-  wrap.className = 'trades' + (dir ? (dir > 0 ? ' from-right' : ' from-left') : '');
-  cols.forEach(col => {
-    const d = document.createElement('div'); d.className = 'tcol';
-    if (!isPhone()) d.style.width = c + 'px';
-    d.innerHTML = `<div class="thead"><span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span></div>${goodsBlock(col.p.stats, g)}`;
-    const add = (it, cls, cap) => {
-      const fig = document.createElement('figure'); fig.className = 'tcard ' + cls;
-      const img = new Image(); img.src = it.src; img.alt = `${col.f.name} – ${it.kind}`; img.title = it.kind;
-      img.addEventListener('click', e => { e.stopPropagation(); openZoom(it.src); });
-      fig.appendChild(img);
-      if (cap) fig.insertAdjacentHTML('beforeend', `<figcaption>${cap}</figcaption>`);
-      d.appendChild(fig);
-    };
-    col.pns.forEach(it => add(it, 'pn'));
-    col.cmd.forEach(it => add(it, 'cmd' + (col.locked ? ' locked' : ''), col.locked ? `🔒 Commander · ${it.unlock}` : col.unlocked ? '✓ Commander unlocked' : 'Commander'));
-    d.querySelector('.thead').addEventListener('click', e => { e.stopPropagation(); pin(col.f.i); });
-    wrap.appendChild(d);
-  });
-  stage.replaceChildren(wrap); stage.scrollTop = 0;
+  wrap.className = 'trades' + (isPhone() ? '' : ' tgrid') + (dir ? (dir > 0 ? ' from-right' : ' from-left') : '');
+  if (!isPhone()) wrap.style.gridTemplateColumns = `repeat(${cols.length}, ${c}px)`;
+  const card = (col, it, cls, cap) => {
+    const fig = document.createElement('figure'); fig.className = 'tcard ' + cls;
+    const img = new Image(); img.src = it.src; img.alt = `${col.f.name} – ${it.kind}`; img.title = it.kind;
+    img.addEventListener('click', e => { e.stopPropagation(); openZoom(it.src); });
+    fig.appendChild(img);
+    if (cap) fig.insertAdjacentHTML('beforeend', `<figcaption>${cap}</figcaption>`);
+    return fig;
+  };
+  // the cells for one player, top to bottom: name, goods, commander, promissory notes (stacked; hover brings one to the front)
+  const cells = col => {
+    const head = document.createElement('div'); head.className = 'thead';
+    head.innerHTML = `<span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span>`;
+    head.addEventListener('click', e => { e.stopPropagation(); pin(col.f.i); });
+    const goods = document.createElement('div'); goods.className = 'gcell'; goods.innerHTML = goodsBlock(col.p.stats, g);
+    const cmd = document.createElement('div'); cmd.className = 'ccell';
+    col.cmd.forEach(it => cmd.appendChild(card(col, it, 'cmd' + (col.locked ? ' locked' : ''), col.locked ? `🔒 Commander · ${it.unlock}` : col.unlocked ? '✓ Commander unlocked' : 'Commander')));
+    const pn = document.createElement('div'); pn.className = 'pnstack';
+    col.pns.forEach((it, k) => {
+      const fig = card(col, it, 'pn');
+      fig.style.width = (pnW(col) * 100) + '%';
+      fig.style.marginLeft = k ? `${k * OFF * 100}%` : '0';
+      fig.style.marginTop = k ? `${k * OFF * 100}%` : '0';
+      if (!isPhone()) fig.style.marginTop = k ? (k * OFF * c) + 'px' : '0';
+      fig.style.zIndex = col.pns.length - k;
+      pn.appendChild(fig);
+    });
+    return [head, goods, cmd, pn];
+  };
+  if (isPhone()){
+    cols.forEach(col => { const d = document.createElement('div'); d.className = 'tcol'; cells(col).forEach(x => d.appendChild(x)); wrap.appendChild(d); });
+  } else {
+    // row by row, so every player's goods, commander and notes line up across the page
+    const all = cols.map(cells);
+    for (let r = 0; r < 4; r++) all.forEach(cs => wrap.appendChild(cs[r]));
+  }
+  const note = document.createElement('p'); note.className = 'tnote';
+  note.innerHTML = '<b>What can change hands:</b> commodities (they become trade goods for whoever gets them), trade goods, promissory notes and relic fragments, in one deal with each neighbour per turn. Planets, units and action cards can’t be handed over; they can only be promised in a deal, and deals aren’t binding.';
+  const outer = document.createElement('div'); outer.className = 'tradewrap'; outer.append(wrap, note);
+  stage.replaceChildren(outer); stage.scrollTop = 0;
 }
 function showBoard(doPin, dir){
   const g = games[group]; if (!g) return;
