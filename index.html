@@ -174,7 +174,7 @@
   .eds button.edt.on { background:none; color:var(--ink); }
   /* leaderboard */
   .lbt .th { display:grid !important; place-items:center; aspect-ratio:1; border-radius:10px; border:2px solid rgba(240,185,58,.45); background:#141a2b; }
-  .lbt .lbic { font-size:28px; line-height:1; filter:saturate(.9); }
+  .lbt .lbic, .trt .lbic { font-size:28px; line-height:1; filter:saturate(.9); }
   .lbt.active .th, .lbt:hover .th { border-color:var(--acc); box-shadow:0 0 14px rgba(240,185,58,.45); }
   .lbt em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
   body.board .viewbar { visibility:hidden; }
@@ -187,6 +187,18 @@
   .gal .ld.sc figcaption b { color:var(--acc); }
   .gal .ld.sc.played img { opacity:.45; filter:grayscale(.6); }
   .gal .ld.sc { position:relative; }
+  /* trades */
+  .trades { display:flex; justify-content:center; align-items:flex-start; gap:var(--gap); width:100%; animation:pop .14s ease; }
+  .trades.from-right { animation:fromRight .18s ease; } .trades.from-left { animation:fromLeft .18s ease; }
+  .tcol { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+  .thead { height:24px; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; }
+  .thead .was { color:var(--dim); font-size:12px; }
+  .tcard { margin:0; } .tcard img { width:100%; height:auto; display:block; border-radius:8px; cursor:zoom-in; filter:drop-shadow(0 0 12px rgba(80,130,255,.22)); }
+  .tcard figcaption { font-size:11.5px; color:#c3cadb; margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tcard.locked img { opacity:.35; filter:grayscale(.7); }
+  .trt .th { display:grid !important; place-items:center; aspect-ratio:1; border-radius:10px; border:2px solid rgba(138,148,173,.35); background:#141a2b; }
+  .trt.active .th, .trt:hover .th { border-color:var(--acc); box-shadow:0 0 14px rgba(240,185,58,.45); }
+  .trt em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
   /* trade goods: a little stack of coins sitting on the card's slanted right edge */
   .tgs { position:absolute; left:75%; top:calc((100% - 30px) * .74); transform:translate(-50%, -50%); display:flex; flex-direction:column-reverse; align-items:center; filter:drop-shadow(0 3px 4px rgba(0,0,0,.85)); pointer-events:none; }
   .tgs .tg { width:clamp(22px, 3vw, 36px); height:auto; display:block; }
@@ -290,6 +302,11 @@
     .views { width:100%; }
     .views button { flex:1; padding:8px 4px; font-size:11px; }
     .credit { display:none; }
+    .trades { flex-direction:column; align-items:stretch; }
+    .tcol { display:grid; grid-template-columns:1fr 1.6fr; align-items:start; gap:8px; }
+    .tcol .thead { grid-column:1 / -1; }
+    .tcol .tcard.cmd { grid-column:2; grid-row:2; } .tcol .tcard.pn { grid-column:1; }
+    .tcard figcaption { white-space:normal; }
     .burger { width:38px; height:38px; margin-top:6px; } .burger b { top:42px; }
     .board-wrap { margin:4px 0; }
     table.lb { font-size:13px; } table.lb col.c-p { width:31%; } table.lb col.c-vp { width:15%; }
@@ -364,7 +381,7 @@ const $ = id => document.getElementById(id);
 const stage = $('stage'), row = $('row'), list = $('list'), q = $('q'), zoom = $('zoom');
 
 // ---------- one sideways-scrolling row: all factions, or one game's factions ----------
-const N = F.length, ALL = -1, LB = -2, SC = -3;   // LB / SC: the leaderboard or the strategy cards are showing instead of a faction
+const N = F.length, ALL = -1, LB = -2, SC = -3, TR = -4;   // LB / SC: the leaderboard or the strategy cards are showing instead of a faction
 F.forEach((f, i) => { f.i = i; f.g = ALL; });
 
 let group = ALL, view = 'overview', current = -1, pinned = false;
@@ -417,7 +434,7 @@ function toggleGame(i){
 }
 function refreshStars(){
   const g = starGame();
-  row.querySelectorAll('.fac:not(.lbt):not(.sct)').forEach(el => {
+  row.querySelectorAll('.fac:not(.lbt):not(.sct):not(.trt)').forEach(el => {
     const on = inGame(+el.dataset.i, g);
     el.classList.toggle('starred', on);
     const s = el.querySelector('.fstar'); s.textContent = on ? '★' : '☆';
@@ -474,6 +491,14 @@ function setGroup(gi){
     b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showStrategy(true); });
     row.appendChild(b);
   }
+  if (gi >= 0 && g.factions.length){
+    const b = document.createElement('div');
+    b.className = 'fac trt';
+    b.innerHTML = `<button class="pick" aria-label="Trades"><span class="th"><span class="lbic">🤝</span></span><span>Trades</span><em>notes · commanders</em></button>`;
+    b.addEventListener('mouseenter', () => { if (!pinned) showTrades(false); });
+    b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showTrades(true); });
+    row.appendChild(b);
+  }
   facs.forEach(f => {
     const el = document.createElement('div');
     el.className = 'fac'; el.dataset.i = f.i;
@@ -506,9 +531,10 @@ function setGroup(gi){
   markActive();
   row.scrollLeft = 0;
   if (current === SC) showStrategy(pinned);
+  else if (current === TR){ if (gi >= 0 && g.factions.length) showTrades(pinned); else unpin(); }
   else if (current === LB){ if (gi >= 0 && g.factions.length) showBoard(pinned); else unpin(); }
   // switching to a game tab while looking at a faction that isn't in it: open on the leaderboard
-  else if (gi >= 0 && g.factions.length && current !== SC && !(current >= 0 && inGame(current, g))) showBoard(true);
+  else if (gi >= 0 && g.factions.length && current !== SC && current !== TR && !(current >= 0 && inGame(current, g))) showBoard(true);
 }
 // mouse wheel scrolls the row sideways; drag to scroll on desktop too
 row.addEventListener('wheel', e => {
@@ -697,7 +723,8 @@ function flash(msg){ const n = $('toast'); n.textContent = msg; n.classList.add(
 function markActive(scroll){
   const lbt = row.querySelector('.lbt'); if (lbt) lbt.classList.toggle('active', current === LB);
   const sct = row.querySelector('.sct'); if (sct) sct.classList.toggle('active', current === SC);
-  row.querySelectorAll('.fac:not(.lbt):not(.sct)').forEach(el => {
+  const trt = row.querySelector('.trt'); if (trt) trt.classList.toggle('active', current === TR);
+  row.querySelectorAll('.fac:not(.lbt):not(.sct):not(.trt)').forEach(el => {
     const on = +el.dataset.i === current;
     el.classList.toggle('active', on);
     if (on && scroll){
@@ -771,6 +798,49 @@ function showStrategy(doPin, dir){
     gal.appendChild(r);
   });
   stage.replaceChildren(gal); stage.scrollTop = 0;
+}
+// ---------- trades: each player's promissory notes and commander, side by side ----------
+function showTrades(doPin, dir){
+  const g = games[group]; if (!g) return;
+  if (doPin){ pinned = true; document.body.classList.add('pinned'); }
+  current = TR; markActive(doPin);
+  document.body.classList.add('chosen', 'board');
+  $('title').innerHTML = `Trades<small>${esc(g.title || g.code)} · each player's promissory notes and commander (an Alliance shares an unlocked commander)</small>`;
+  const cols = gameList(g).map(f => {
+    const p = g.players[f.key] || {}, st = p.stats;
+    const pns = f.special.filter(it => it.kind === 'Promissory note' && !/^plot/.test(it.key));
+    const cmd = f.special.filter(it => it.role === 'commander');
+    return { f, p, locked: st && st.leaders && st.leaders.commander === 'locked', unlocked: st && st.leaders && st.leaders.commander === 'unlocked', pns, cmd };
+  });
+  const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
+  const HEAD = 24, CAP = 22, W = stage.clientWidth, H = stage.clientHeight;
+  // one column per player: notes on top, commander below; size so the tallest column fits
+  let c = (W - gap * (cols.length - 1)) / cols.length;
+  if (!isPhone()){
+    const need = cols.map(col => [...col.pns, ...col.cmd].reduce((a, it) => a + it.h / it.w, 0));
+    const extra = Math.max(...cols.map(col => HEAD + CAP * col.cmd.length + gap * (col.pns.length + col.cmd.length)));
+    c = Math.min(c, (H - extra) / Math.max(...need));
+  }
+  const wrap = document.createElement('div');
+  wrap.className = 'trades' + (dir ? (dir > 0 ? ' from-right' : ' from-left') : '');
+  cols.forEach(col => {
+    const d = document.createElement('div'); d.className = 'tcol';
+    if (!isPhone()) d.style.width = c + 'px';
+    d.innerHTML = `<div class="thead"><span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span></div>`;
+    const add = (it, cls, cap) => {
+      const fig = document.createElement('figure'); fig.className = 'tcard ' + cls;
+      const img = new Image(); img.src = it.src; img.alt = `${col.f.name} – ${it.kind}`; img.title = it.kind;
+      img.addEventListener('click', e => { e.stopPropagation(); openZoom(it.src); });
+      fig.appendChild(img);
+      if (cap) fig.insertAdjacentHTML('beforeend', `<figcaption>${cap}</figcaption>`);
+      d.appendChild(fig);
+    };
+    col.pns.forEach(it => add(it, 'pn'));
+    col.cmd.forEach(it => add(it, 'cmd' + (col.locked ? ' locked' : ''), col.locked ? `🔒 Commander · ${it.unlock}` : col.unlocked ? '✓ Commander unlocked' : 'Commander'));
+    d.querySelector('.thead').addEventListener('click', e => { e.stopPropagation(); pin(col.f.i); });
+    wrap.appendChild(d);
+  });
+  stage.replaceChildren(wrap); stage.scrollTop = 0;
 }
 function showBoard(doPin, dir){
   const g = games[group]; if (!g) return;
@@ -904,6 +974,7 @@ function layout(items, W, H, gap){
 function render(dir){
   if (current === LB) return showBoard(pinned, dir);
   if (current === SC) return showStrategy(pinned, dir);
+  if (current === TR) return showTrades(pinned, dir);
   const f = F[current], hasSheet = f[view].some(it => it.kind === 'Faction sheet');
   // next to a faction sheet, smaller cards (mech) show at ~60% of its height
   const items = f[view].map(it => ({ ...it, s: hasSheet && it.kind !== 'Faction sheet' ? .6 : 1 }));
@@ -1017,9 +1088,9 @@ function step(dir){
   // inside a game tab, arrows/swipes cycle just that game's factions
   if (group >= 0 && games[group].factions.length){
     // the game's factions, then the leaderboard, then round again
-    const L = [LB, SC, ...gameList(games[group]).map(f => f.i)], at = L.indexOf(current);
+    const L = [LB, SC, TR, ...gameList(games[group]).map(f => f.i)], at = L.indexOf(current);
     const j = at < 0 ? (dir > 0 ? 0 : L.length - 1) : (at + dir + L.length) % L.length;
-    return L[j] === LB ? showBoard(true, dir) : L[j] === SC ? showStrategy(true, dir) : pin(L[j], dir);
+    return L[j] === LB ? showBoard(true, dir) : L[j] === SC ? showStrategy(true, dir) : L[j] === TR ? showTrades(true, dir) : pin(L[j], dir);
   }
   const V = [SC, ...visibleList().map(f => f.i)], at = V.indexOf(current);
   const j = at < 0 ? (dir > 0 ? 0 : V.length - 1) : (at + dir + V.length) % V.length;
