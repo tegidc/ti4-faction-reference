@@ -193,6 +193,15 @@
   .tcol { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
   .thead { height:24px; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; }
   .thead .was { color:var(--dim); font-size:12px; }
+  .goods { display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; font-size:13px; padding:6px 8px; border-radius:8px; background:rgba(20,26,42,.75); border:1px solid rgba(138,148,173,.18); }
+  .goods.muted { color:var(--dim); font-size:11px; }
+  .goods > span { display:inline-flex; align-items:center; gap:4px; }
+  .goods .tg { width:16px; height:16px; }
+  .goods small { color:var(--dim); font-size:11px; }
+  .goods .comm { display:inline-block; width:14px; height:14px; border-radius:3px; background:#8fd14f; border:1.5px solid #3d6b12; transform:rotate(45deg) scale(.8); }
+  .frag { display:inline-grid; place-items:center; min-width:18px; height:18px; padding:0 4px; border-radius:9px; border:1.5px solid var(--fc); color:var(--fc); font:700 10.5px Inter, sans-serif; }
+  .relics { flex-basis:100%; display:flex; flex-wrap:wrap; gap:3px 8px; }
+  .relic { font-size:11.5px; color:#ffd88a; white-space:nowrap; } .relic.ex { opacity:.5; }
   .tcard { margin:0; } .tcard img { width:100%; height:auto; display:block; border-radius:8px; cursor:zoom-in; filter:drop-shadow(0 0 12px rgba(80,130,255,.22)); }
   .tcard figcaption { font-size:11.5px; color:#c3cadb; margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .tcard.locked img { opacity:.35; filter:grayscale(.7); }
@@ -304,8 +313,8 @@
     .credit { display:none; }
     .trades { flex-direction:column; align-items:stretch; }
     .tcol { display:grid; grid-template-columns:1fr 1.6fr; align-items:start; gap:8px; }
-    .tcol .thead { grid-column:1 / -1; }
-    .tcol .tcard.cmd { grid-column:2; grid-row:2; } .tcol .tcard.pn { grid-column:1; }
+    .tcol .thead, .tcol .goods { grid-column:1 / -1; }
+    .tcol .tcard.cmd { grid-column:2; grid-row:3; } .tcol .tcard.pn { grid-column:1; }
     .tcard figcaption { white-space:normal; }
     .burger { width:38px; height:38px; margin-top:6px; } .burger b { top:42px; }
     .board-wrap { margin:4px 0; }
@@ -579,9 +588,14 @@ function statsOf(p){
     leaders[l.type] = (was === 'unlocked' || !l.locked) ? 'unlocked' : 'locked';
   });
   return { vp:p.totalVps || 0, planets:(p.planets || []).length, res:p.totResources || 0, inf:p.totInfluence || 0,
-    ac:p.acCount || 0, ships:SHIPS.reduce((a, k) => a + n(k), 0), fighters:n('ff'), ground:GROUND.reduce((a, k) => a + n(k), 0), leaders };
+    ac:p.acCount || 0, ships:SHIPS.reduce((a, k) => a + n(k), 0), fighters:n('ff'), ground:GROUND.reduce((a, k) => a + n(k), 0), leaders,
+    // tradeable bits for the Trades view
+    tg:p.tg || 0, comm:p.commodities || 0, commMax:p.commoditiesTotal || 0,
+    relics:(p.relics || []).map(r => ({ id:r, exhausted:(p.exhaustedRelics || []).includes(r) })),
+    frags:(p.fragments || []).reduce((a, f) => { const k = String(f).slice(0, 1); if ('chiu'.includes(k)) a[k] = (a[k] || 0) + 1; return a; }, {}) };
 }
 // AsyncTI4 game data -> a game tab (factions, players, stats, whose turn)
+const DATA_V = 2;   // bump when gameFromData keeps new fields, so saved games refetch once
 function gameFromData(d, name){
   const factions = [], pl = {}, unknown = [];
   (d.playerData || []).forEach(p => {
@@ -594,7 +608,7 @@ function gameFromData(d, name){
   const sc = (d.strategyCards || []).filter(c => c.initiative >= 1 && c.initiative <= 8).map(c => ({ n:c.initiative, by:keyOf(c.pickedByFaction), played:!!c.played, tg:c.tradeGoods || 0 }));
   const meta = { sc, vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
     active:st.activePlayer || '', phase:st.phase || '', turnAt:st.turnStartedAt || 0, winner:st.winner || null };
-  return { g:{ code:name || d.gameName, title:d.gameCustomName || '', factions, players:pl, meta, pasted:Date.now() }, unknown };
+  return { g:{ v:DATA_V, code:name || d.gameName, title:d.gameCustomName || '', factions, players:pl, meta, pasted:Date.now() }, unknown };
 }
 async function fetchGame(code){
   const r = await fetch(apiUrl(code), { cache:'no-store' });
@@ -656,7 +670,7 @@ async function refreshGames(force){
     try {
       const d = await fetchGame(g.code);
       g.checked = Date.now(); g.failed = false;
-      if (!g.meta || d.eventSequence !== g.meta.seq){
+      if (!g.meta || d.eventSequence !== g.meta.seq || g.v !== DATA_V){
         const { g:fresh } = gameFromData(d, g.code);
         Object.assign(g, fresh, { live:true, checked:Date.now() });
         changed = true;
@@ -800,6 +814,21 @@ function showStrategy(doPin, dir){
   stage.replaceChildren(gal); stage.scrollTop = 0;
 }
 // ---------- trades: each player's promissory notes and commander, side by side ----------
+const RELICS = { dominusorb:'Dominus Orb', mawofworlds:'Maw of Worlds', emelpar:'Scepter of Emelpar', shard:'Shard of the Throne',
+  stellarconverter:'Stellar Converter', codex:'The Codex', emphidia:'The Crown of Emphidia', thalnos:'The Crown of Thalnos', obsidian:'The Obsidian', prophetstears:"The Prophet's Tears" };
+const relicName = id => RELICS[id] || String(id).replace(/[_-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+const FRAG = { c:['Cultural', '#5aa0ff'], h:['Hazardous', '#ff6b5a'], i:['Industrial', '#5fd68a'], u:['Unknown', '#c3cadb'] };
+// the small "goods" block in each player's Trades column: trade goods, commodities, relic fragments, relics
+function goodsBlock(st){
+  if (!st || st.comm === undefined) return '<div class="goods muted">Goods show up after the next update</div>';
+  const fr = Object.keys(FRAG).filter(k => st.frags && st.frags[k]).map(k => `<span class="frag" style="--fc:${FRAG[k][1]}" title="${FRAG[k][0]} relic fragment${st.frags[k] > 1 ? 's' : ''}">${FRAG[k][0][0]}${st.frags[k] > 1 ? '×' + st.frags[k] : ''}</span>`).join('');
+  const rl = (st.relics || []).map(r => `<span class="relic${r.exhausted ? ' ex' : ''}" title="${r.exhausted ? 'Exhausted' : 'Relic'}">◆ ${esc(relicName(r.id))}</span>`).join('');
+  return `<div class="goods">
+    <span title="Trade goods">${TG_ICON}<b>${st.tg}</b></span>
+    <span title="Commodities (current / max)"><i class="comm"></i><b>${st.comm}</b><small>/${st.commMax}</small></span>
+    ${fr ? `<span class="frags" title="Relic fragments">${fr}</span>` : ''}
+    ${rl ? `<div class="relics">${rl}</div>` : ''}</div>`;
+}
 function showTrades(doPin, dir){
   const g = games[group]; if (!g) return;
   if (doPin){ pinned = true; document.body.classList.add('pinned'); }
@@ -813,12 +842,12 @@ function showTrades(doPin, dir){
     return { f, p, locked: st && st.leaders && st.leaders.commander === 'locked', unlocked: st && st.leaders && st.leaders.commander === 'unlocked', pns, cmd };
   });
   const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
-  const HEAD = 24, CAP = 22, W = stage.clientWidth, H = stage.clientHeight;
+  const HEAD = 24, CAP = 22, GOODS = cols.some(c => c.p.stats && c.p.stats.relics && c.p.stats.relics.length) ? 58 : 34, W = stage.clientWidth, H = stage.clientHeight;
   // one column per player: notes on top, commander below; size so the tallest column fits
   let c = (W - gap * (cols.length - 1)) / cols.length;
   if (!isPhone()){
     const need = cols.map(col => [...col.pns, ...col.cmd].reduce((a, it) => a + it.h / it.w, 0));
-    const extra = Math.max(...cols.map(col => HEAD + CAP * col.cmd.length + gap * (col.pns.length + col.cmd.length)));
+    const extra = Math.max(...cols.map(col => HEAD + GOODS + CAP * col.cmd.length + gap * (col.pns.length + col.cmd.length + 1)));
     c = Math.min(c, (H - extra) / Math.max(...need));
   }
   const wrap = document.createElement('div');
@@ -826,7 +855,7 @@ function showTrades(doPin, dir){
   cols.forEach(col => {
     const d = document.createElement('div'); d.className = 'tcol';
     if (!isPhone()) d.style.width = c + 'px';
-    d.innerHTML = `<div class="thead"><span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span></div>`;
+    d.innerHTML = `<div class="thead"><span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span></div>${goodsBlock(col.p.stats)}`;
     const add = (it, cls, cap) => {
       const fig = document.createElement('figure'); fig.className = 'tcard ' + cls;
       const img = new Image(); img.src = it.src; img.alt = `${col.f.name} – ${it.kind}`; img.title = it.kind;
