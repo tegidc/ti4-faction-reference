@@ -10,7 +10,7 @@ An unofficial fan reference for Twilight Imperium 4 factions: overview, units an
 - Trades (game tabs): each player's trade goods, commodities, relic fragments and relics, plus their promissory notes and commander (faded until unlocked).
 - Add an AsyncTI4 game by its code (e.g. `pbd14000`) to get a tab with just that game's factions, a leaderboard, and faded leaders that haven't been unlocked yet. The page checks AsyncTI4 for new moves every couple of minutes while it's open.
 
-Twilight Imperium © Fantasy Flight Games. Card scans via ti4.basicallyfine.com; game data from the public AsyncTI4 API. Not affiliated with or endorsed by either.
+Twilight Imperium © Fantasy Flight Games. Card scans via ti4.basicallyfine.com; game data from the public AsyncTI4 API; token art and relic cards from the AsyncTI4 bot repository. Not affiliated with or endorsed by either.
 
 ## Rebuilding
 

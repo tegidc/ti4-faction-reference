@@ -202,7 +202,7 @@
   .goods.muted { color:var(--dim); font-size:11px; }
   .goods > div { display:flex; flex-wrap:wrap; align-items:center; min-height:22px; }
   .goods .tg, .goods .tok { width:22px; height:22px; display:block; flex:0 0 auto; }
-  .goods .grow-tg .tg + .tg { margin-left:-6px; }          /* coins overlap a little, like a pile */
+  .goods .grow-tg .tg + .tg { margin-left:-4px; }          /* coins overlap a little, like a pile */
   .goods .grow-cm .tok + .tok { margin-left:2px; }
   .goods .grow-fr { gap:8px; } .goods .grow-fr > span { display:flex; gap:1px; }
   .goods .grow-rl { gap:3px 10px; }
@@ -222,7 +222,9 @@
   .pngen b { display:block; font:800 13px Orbitron, sans-serif; color:var(--gc); margin-bottom:6px; }
   .pngen p { margin:0; font-size:12.5px; line-height:1.4; color:#dfe4ef; }
   .pnfrom { font-size:12px; color:#c3cadb; margin-top:6px; }
-  .relic { display:inline-flex; align-items:center; gap:3px; font-size:11.5px; color:#ffd88a; white-space:nowrap; } .relic.ex { opacity:.5; }
+  .relic { display:inline-flex; align-items:center; gap:3px; font:inherit; font-size:11.5px; color:#ffd88a; white-space:nowrap; background:none; border:none; padding:1px 3px; border-radius:5px; cursor:pointer; }
+  .relic:hover, .relic.held { background:rgba(242,201,76,.15); } .relic.ex { opacity:.5; }
+  .goods img.tok, .goods img.tg { object-fit:contain; } .goods .tok.empty { opacity:.32; filter:grayscale(.5); }
   .trades.tgrid { display:grid; justify-content:center; align-items:start; column-gap:var(--gap); row-gap:var(--gap); }
   .trades.tgrid .gcell { align-self:stretch; display:flex; } .trades.tgrid .gcell .goods { flex:1; }
   .pnstack { display:grid; }
@@ -367,7 +369,7 @@
   <div class="seg groups" id="groups" role="tablist" aria-label="Games"></div>
   <h3>Expansions</h3>
   <div class="seg eds" id="eds" aria-label="Expansions shown"></div>
-  <p class="dfoot">Unofficial fan reference · Twilight Imperium © Fantasy Flight Games · card scans via ti4.basicallyfine.com · game data via AsyncTI4</p>
+  <p class="dfoot">Unofficial fan reference · Twilight Imperium © Fantasy Flight Games · card scans via ti4.basicallyfine.com · game data, token art and relic cards via AsyncTI4</p>
 </aside>
 
 <div class="toprow">
@@ -388,7 +390,7 @@
 <footer class="foot">
   <div class="title" id="title">Pick a faction<small>hover or tap a card, or search by name</small></div>
 </footer>
-<div class="credit">Unofficial fan reference · Twilight Imperium © Fantasy Flight Games · card scans via ti4.basicallyfine.com</div>
+<div class="credit">Unofficial fan reference · Twilight Imperium © Fantasy Flight Games · card scans via ti4.basicallyfine.com · tokens and relics via AsyncTI4</div>
 
 <div class="add" id="add" role="dialog" aria-label="Add a game">
   <div class="addbox">
@@ -805,7 +807,7 @@ function show(i, dir){
 // ---------- leaderboard: the game's standings, shown in the big middle space ----------
 // ---------- strategy cards: the 8 cards; on a game tab, who picked which ----------
 // a trade good token: gold coin with the TI4-style hexagon in the middle
-const TG_ICON = '<svg viewBox="0 0 32 32" class="tg"><circle cx="16" cy="16" r="15" fill="#e8b93a" stroke="#7a5408" stroke-width="1.5"/><circle cx="16" cy="16" r="11.5" fill="none" stroke="#a87a14" stroke-width="1.2"/><path d="M16 9.5l5.6 3.25v6.5L16 22.5l-5.6-3.25v-6.5z" fill="#fff3c4" stroke="#7a5408" stroke-width="1.2"/></svg>';
+const TG_ICON = '<img class="tg" src="cards/tokens/tg.webp" alt="" draggable="false">';   // trade good token art via AsyncTI4
 const SCOL = { 1:'#e5453a', 2:'#f08a24', 3:'#f2c518', 4:'#3fb54a', 5:'#19b3a6', 6:'#2fa4e7', 7:'#2e5ad6', 8:'#9b4fd6' };
 const SNAME = { 1:'Leadership', 2:'Diplomacy', 3:'Politics', 4:'Construction', 5:'Trade', 6:'Warfare', 7:'Technology', 8:'Imperial' };
 function showStrategy(doPin, dir){
@@ -847,15 +849,16 @@ function showStrategy(doPin, dir){
 // ---------- trades: each player's promissory notes and commander, side by side ----------
 const RELICS = { dominusorb:'Dominus Orb', mawofworlds:'Maw of Worlds', emelpar:'Scepter of Emelpar', shard:'Shard of the Throne',
   stellarconverter:'Stellar Converter', codex:'The Codex', emphidia:'The Crown of Emphidia', thalnos:'The Crown of Thalnos', obsidian:'The Obsidian', prophetstears:"The Prophet's Tears" };
-const relicName = id => RELICS[id] || String(id).replace(/[_-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+const RELIC_DATA = /*RELICS*/;
+const relicName = id => (RELIC_DATA[id] && RELIC_DATA[id].name) || RELICS[id] || String(id).replace(/[_-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 const FRAG = { c:['Cultural', '#5aa0ff'], h:['Hazardous', '#ff6b5a'], i:['Industrial', '#5fd68a'], u:['Unknown', '#c3cadb'] };
 // the "goods" block in each player's Trades column, drawn as tokens rather than numbers:
 // a row of trade-good coins, a row of commodity tokens (filled = have, outlined = room up to their max),
 // a row of relic fragments, and a row of relics
-const COMM_ICON = (on) => `<svg viewBox="0 0 32 32" class="tok ${on ? '' : 'empty'}"><circle cx="16" cy="16" r="14" fill="${on ? '#8f98ab' : 'none'}" stroke="${on ? '#3a4152' : '#6f7a95'}" stroke-width="2" ${on ? '' : 'stroke-dasharray="4 3"'}/>${on ? '<g fill="#eef1f6" stroke="#3a4152" stroke-width="1.2"><rect x="9" y="17.5" width="6.5" height="5.5" rx=".8"/><rect x="16.5" y="17.5" width="6.5" height="5.5" rx=".8"/><rect x="12.75" y="11" width="6.5" height="5.5" rx=".8"/></g>' : ''}</svg>`;   // grey commodity token with a little stack of blocks
-const FRAG_ICON = c => `<svg viewBox="0 0 32 32" class="tok"><path d="M16 3l11 7.5-3 13.5-8 5-8-5-3-13.5z" fill="${c}" stroke="#0b0e17" stroke-width="1.6"/><path d="M16 3v26M5 10.5l11 6 11-6" stroke="rgba(255,255,255,.45)" stroke-width="1.2" fill="none"/></svg>`;
+const COMM_ICON = (on) => `<img class="tok${on ? '' : ' empty'}" src="cards/tokens/comm.webp" alt="" draggable="false">`;   // commodity token art; ghosted = room up to their max
+const FRAG_ICON = k => `<img class="tok" src="cards/tokens/frag-${k}.webp" alt="" draggable="false">`;   // relic fragment art
 const RELIC_ICON = '<svg viewBox="0 0 32 32" class="tok"><path d="M16 2l6 9-6 19-6-19z" fill="#f2c94c" stroke="#7a5408" stroke-width="1.5"/><path d="M10 11h12" stroke="#7a5408" stroke-width="1.2"/></svg>';
-const TG_EMPTY = '<svg viewBox="0 0 32 32" class="tok"><circle cx="16" cy="16" r="14" fill="none" stroke="#b8902a" stroke-width="2" stroke-dasharray="4 3"/></svg>';   // no trade goods: an empty gold outline
+const TG_EMPTY = '<img class="tok empty" src="cards/tokens/tg.webp" alt="" draggable="false">';   // no trade goods: a ghosted cube
 const tokens = (n, html, cap = 10) => html.repeat(Math.min(n, cap)) + (n > cap ? `<b class="more">+${n - cap}</b>` : '');
 // ---------- promissory notes: how many in hand (hands are secret), and the ones face up in front of a player ----------
 const GENERIC_PN = {
@@ -897,8 +900,9 @@ const pnPop = document.createElement('div'); pnPop.className = 'pnpop'; document
 let pnHeld = null;
 function showNote(btn){
   const n = JSON.parse(btn.dataset.pn);
-  pnPop.innerHTML = (n.src ? `<img src="${n.src}" alt="">` : `<div class="pngen" style="--gc:${n.color}"><b>${esc(n.name)}</b><p>${esc(n.text)}</p></div>`)
-    + `<div class="pnfrom"><span class="pdot" style="background:${n.color}"></span>${n.generic ? '' : esc(n.name) + ' · '}from ${esc(n.giver)}${n.faction ? ' (' + esc(n.faction) + ')' : ''}</div>`;
+  pnPop.innerHTML = (n.src ? `<img src="${n.src}" alt="">` : `<div class="pngen" style="--gc:${n.color}"><b>${esc(n.name)}</b><p>${esc(n.text || '')}</p></div>`)
+    + (n.relic ? `<div class="pnfrom">${esc(n.name)}${n.exhausted ? ' · exhausted' : ''}</div>`
+      : `<div class="pnfrom"><span class="pdot" style="background:${n.color}"></span>${n.generic ? '' : esc(n.name) + ' · '}from ${esc(n.giver)}${n.faction ? ' (' + esc(n.faction) + ')' : ''}</div>`);
   const r = btn.getBoundingClientRect(), w = Math.min(260, innerWidth - 24);
   pnPop.style.width = w + 'px';
   pnPop.style.left = Math.max(12, Math.min(innerWidth - w - 12, r.left + r.width / 2 - w / 2)) + 'px';
@@ -906,11 +910,11 @@ function showNote(btn){
   const h = pnPop.offsetHeight;
   pnPop.style.top = (r.bottom + 8 + h < innerHeight ? r.bottom + 8 : Math.max(8, r.top - h - 8)) + 'px';
 }
-function hideNote(){ pnPop.classList.remove('show'); pnHeld = null; document.querySelectorAll('.pnc.held').forEach(b => b.classList.remove('held')); }
-stage.addEventListener('mouseover', e => { const b = e.target.closest('.pnc'); if (b && !pnHeld) showNote(b); });
-stage.addEventListener('mouseout', e => { const b = e.target.closest('.pnc'); if (b && !pnHeld && !b.contains(e.relatedTarget)) pnPop.classList.remove('show'); });
+function hideNote(){ pnPop.classList.remove('show'); pnHeld = null; document.querySelectorAll('.pnc.held, .relic.held').forEach(b => b.classList.remove('held')); }
+stage.addEventListener('mouseover', e => { const b = e.target.closest('.pnc, .relic'); if (b && !pnHeld) showNote(b); });
+stage.addEventListener('mouseout', e => { const b = e.target.closest('.pnc, .relic'); if (b && !pnHeld && !b.contains(e.relatedTarget)) pnPop.classList.remove('show'); });
 stage.addEventListener('click', e => {
-  const b = e.target.closest('.pnc'); if (!b) return;
+  const b = e.target.closest('.pnc, .relic'); if (!b) return;
   e.stopPropagation();
   if (pnHeld === b){ hideNote(); return; }
   hideNote(); pnHeld = b; b.classList.add('held'); showNote(b);
@@ -923,8 +927,9 @@ function goodsBlock(st, g){
   if (st.commMax) rows.push(`<div class="grow-cm" title="Commodities: ${st.comm} of ${st.commMax}">${tokens(st.comm, COMM_ICON(true))}${tokens(Math.max(0, st.commMax - st.comm), COMM_ICON(false))}</div>`);
   rows.push(`<div class="grow-tg" title="Trade goods: ${st.tg}">${st.tg ? tokens(st.tg, TG_ICON) : TG_EMPTY}</div>`);
   const fr = Object.keys(FRAG).filter(k => st.frags && st.frags[k]);
-  if (fr.length) rows.push(`<div class="grow-fr">${fr.map(k => `<span title="${st.frags[k]} ${FRAG[k][0].toLowerCase()} relic fragment${st.frags[k] > 1 ? 's' : ''}">${tokens(st.frags[k], FRAG_ICON(FRAG[k][1]))}</span>`).join('')}</div>`);
-  if (st.relics && st.relics.length) rows.push(`<div class="grow-rl">${st.relics.map(r => `<span class="relic${r.exhausted ? ' ex' : ''}" title="${r.exhausted ? 'Exhausted relic' : 'Relic'}">${RELIC_ICON}${esc(relicName(r.id))}</span>`).join('')}</div>`);
+  if (fr.length) rows.push(`<div class="grow-fr">${fr.map(k => `<span title="${st.frags[k]} ${FRAG[k][0].toLowerCase()} relic fragment${st.frags[k] > 1 ? 's' : ''}">${tokens(st.frags[k], FRAG_ICON(k))}</span>`).join('')}</div>`);
+  if (st.relics && st.relics.length) rows.push(`<div class="grow-rl">${st.relics.map(r => { const has = RELIC_DATA[r.id]; const info = { name:relicName(r.id), src:has ? `cards/relics/${r.id}.webp` : '', relic:true, exhausted:r.exhausted, giver:'', color:'#f2c94c' };
+      return `<button class="relic${r.exhausted ? ' ex' : ''}" data-pn="${esc(JSON.stringify(info))}" title="${r.exhausted ? 'Exhausted relic' : 'Relic'}">${RELIC_ICON}${esc(info.name)}</button>`; }).join('')}</div>`);
   return `<div class="goods">${rows.join('')}</div>`;
 }
 function showTrades(doPin, dir){

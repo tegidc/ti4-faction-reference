@@ -23,5 +23,6 @@ for f in d:
         elif role == 'hero':
             x['unlock'] = '3 scored objectives'
             x['unlockFull'] = 'Have 3 scored objectives'
-open('index.html', 'w').write(t.replace('/*DATA*/', json.dumps(d, separators=(',', ':'))))
+relics = json.load(open(os.path.join(here, 'relics.json')))
+open('index.html', 'w').write(t.replace('/*DATA*/', json.dumps(d, separators=(',', ':'))).replace('/*RELICS*/', json.dumps(relics, separators=(',', ':'))))
 print('built index.html')

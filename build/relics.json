@@ -1,0 +1,117 @@
+{
+ "dominusorb": {
+  "name": "Dominus Orb",
+  "w": 500,
+  "h": 750
+ },
+ "mawofworlds": {
+  "name": "Maw of Worlds",
+  "w": 500,
+  "h": 750
+ },
+ "emelpar": {
+  "name": "Scepter of Emelpar",
+  "w": 500,
+  "h": 750
+ },
+ "shard": {
+  "name": "Shard of the Throne",
+  "w": 500,
+  "h": 750
+ },
+ "stellarconverter": {
+  "name": "Stellar Converter",
+  "w": 500,
+  "h": 750
+ },
+ "codex": {
+  "name": "The Codex",
+  "w": 500,
+  "h": 750
+ },
+ "emphidia": {
+  "name": "The Crown of Emphidia",
+  "w": 500,
+  "h": 750
+ },
+ "thalnos": {
+  "name": "The Crown of Thalnos",
+  "w": 500,
+  "h": 750
+ },
+ "obsidian": {
+  "name": "The Obsidian",
+  "w": 500,
+  "h": 750
+ },
+ "prophetstears": {
+  "name": "The Prophet's Tears",
+  "w": 500,
+  "h": 750
+ },
+ "heartofixth": {
+  "name": "Heart of Ixth",
+  "w": 500,
+  "h": 750
+ },
+ "lightrailordnance": {
+  "name": "Lightrail Ordnance",
+  "w": 500,
+  "h": 750
+ },
+ "metalivoidarmaments": {
+  "name": "Metali Void Armaments",
+  "w": 500,
+  "h": 750
+ },
+ "metalivoidshielding": {
+  "name": "Metali Void Shielding",
+  "w": 500,
+  "h": 750
+ },
+ "quantumcore": {
+  "name": "The Quantumcore",
+  "w": 500,
+  "h": 750
+ },
+ "thesilverflame": {
+  "name": "The Silver Flame",
+  "w": 500,
+  "h": 750
+ },
+ "thetriad": {
+  "name": "The Triad",
+  "w": 500,
+  "h": 750
+ },
+ "dynamiscore": {
+  "name": "Dynamis Core",
+  "w": 500,
+  "h": 750
+ },
+ "titanprototype": {
+  "name": "JR-XS455-O",
+  "w": 500,
+  "h": 333
+ },
+ "nanoforge": {
+  "name": "Nano-Forge",
+  "w": 500,
+  "h": 750
+ },
+ "neuraloop": {
+  "name": "Neuraloop",
+  "w": 500,
+  "h": 750
+ },
+ "circletofthevoid": {
+  "name": "Circlet of the Void",
+  "w": 500,
+  "h": 750
+ },
+ "bookoflatvinia": {
+  "name": "Book of Latvinia",
+  "w": 500,
+  "h": 750
+ }
+}
