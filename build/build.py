@@ -24,5 +24,5 @@ for f in d:
             x['unlock'] = '3 scored objectives'
             x['unlockFull'] = 'Have 3 scored objectives'
 relics = json.load(open(os.path.join(here, 'relics.json')))
-open('index.html', 'w').write(t.replace('/*DATA*/', json.dumps(d, separators=(',', ':'))).replace('/*RELICS*/', json.dumps(relics, separators=(',', ':'))))
+open('index.html', 'w').write(t.replace('/*DATA*/', json.dumps(d, separators=(',', ':'))).replace('/*RELICS*/', json.dumps(relics, separators=(',', ':'))).replace('/*OBJ*/', json.dumps(json.load(open(os.path.join(here, 'objectives.json'))), separators=(',', ':'), ensure_ascii=False)))
 print('built index.html')

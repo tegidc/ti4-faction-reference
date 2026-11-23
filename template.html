@@ -244,10 +244,11 @@
   .tgs .tg { width:clamp(22px, 3vw, 36px); height:auto; display:block; }
   .tgs .tg + .tg { margin-bottom:calc(-1 * clamp(16px, 2.3vw, 28px)); }   /* each coin sits mostly on top of the one below */
   .tgs b { color:#ffe08a; font:800 14px Inter, sans-serif; margin-bottom:2px; }
-  .board-wrap { width:min(100%, 860px); margin:auto; animation:pop .14s ease; align-self:center; }
+  .board-wrap { width:min(100%, 1060px); margin:auto; animation:pop .14s ease; }
+  body.board .stage { overflow-y:auto; overflow-x:hidden; }   /* tall leaderboards scroll instead of running under the title */
   .board-wrap.from-right { animation:fromRight .18s ease; } .board-wrap.from-left { animation:fromLeft .18s ease; }
   table.lb { width:100%; border-collapse:collapse; table-layout:fixed; font-size:15px; background:rgba(20,26,42,.75); border-radius:14px; overflow:hidden; }
-  table.lb col.c-p { width:30%; } table.lb col.c-vp { width:16%; }
+  table.lb col.c-p { width:22%; } table.lb col.c-vp { width:38%; }
   table.lb th { font-weight:600; font-size:12px; color:var(--dim); padding:12px 6px; text-align:center; border-bottom:1px solid rgba(138,148,173,.25); }
   table.lb th:first-child, table.lb td:first-child { text-align:left; padding-left:16px; }
   table.lb td { padding:11px 6px; text-align:center; border-bottom:1px solid rgba(138,148,173,.12); }
@@ -259,6 +260,26 @@
   .ic { width:19px; height:19px; fill:none; stroke:#c3cadb; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; vertical-align:middle; }
   .rb { display:inline-grid; place-items:center; width:19px; height:19px; border-radius:50%; font:700 11px Inter, sans-serif; }
   .rb.res { background:#e8b93a; color:#3a2a02; } .rb.inf { background:#3d7be0; color:#eaf2fd; }
+  .lbp { display:flex; align-items:center; gap:8px; } .lbp img { width:32px; height:32px; border-radius:7px; object-fit:cover; border:2px solid; flex:0 0 auto; }
+  table.lb .lbp small { padding-left:0; }
+  .vpline { display:flex; align-items:center; gap:10px; } .vpn { flex:0 0 auto; min-width:46px; text-align:left; }
+  .vbar { flex:1; display:flex; gap:2px; height:20px; min-width:0; }
+  .vseg { min-width:0; border-radius:4px; background:var(--k); display:grid; place-items:center; overflow:hidden; cursor:default; }
+  .vseg img { width:14px; height:14px; }
+  .vseg.pot { background:transparent; border:1.5px dashed var(--k); } .vseg.pot img { opacity:.5; }
+  .vseg.q { background:repeating-linear-gradient(45deg, var(--k) 0 4px, rgba(0,0,0,.35) 4px 7px); border:1.5px solid var(--k); }
+  .vseg:hover { filter:brightness(1.3); outline:1px solid #fff; }
+  .vgoal { flex:0 0 2px; background:rgba(232,236,245,.45); margin:0 2px; border-radius:1px; }
+  .objh { margin:16px 0 8px; font:600 12px Inter, sans-serif; color:var(--dim); }
+  .objs { display:flex; flex-wrap:wrap; gap:8px; }
+  .ob { width:128px; min-height:74px; border-radius:8px; padding:7px 8px; background:rgba(20,26,42,.85); border:1px solid rgba(138,148,173,.25); border-top:3px solid var(--k); font-size:12px; cursor:default; }
+  .ob:hover { border-color:#e8ecf5; border-top-color:var(--k); }
+  .ob.un { opacity:.45; }
+  .obst { display:flex; align-items:center; gap:5px; font-size:10px; letter-spacing:.06em; color:var(--dim); } .obst img { width:16px; height:16px; }
+  .obn { font-weight:600; margin:4px 0 6px; line-height:1.25; } .obq { font-size:18px; text-align:center; margin-top:6px; color:var(--dim); }
+  .ob .pdot { margin-right:3px; }
+  .vtip { position:fixed; z-index:58; display:none; pointer-events:none; max-width:260px; background:#1d2438; border:1px solid #3a4360; border-radius:8px; padding:9px 11px; font-size:12.5px; line-height:1.45; box-shadow:0 10px 28px rgba(0,0,0,.55); }
+  .vtip.show { display:block; } .vtip .vk { font-size:10.5px; letter-spacing:.05em; color:var(--dim); margin-bottom:3px; text-transform:uppercase; } .vtip .vx { margin-top:5px; color:#dfe4ef; }
   .lbnote { color:var(--dim); font-size:12px; text-align:center; margin:10px 0 0; }
   table.lb tr.turn td { background:rgba(240,185,58,.10); }
   table.lb tr.turn td:first-child { box-shadow:inset 3px 0 0 var(--acc); }
@@ -349,7 +370,9 @@
     .tcard figcaption { white-space:normal; }
     .burger { width:38px; height:38px; margin-top:6px; } .burger b { top:42px; }
     .board-wrap { margin:4px 0; }
-    table.lb { font-size:13px; } table.lb col.c-p { width:31%; } table.lb col.c-vp { width:15%; }
+    table.lb { font-size:13px; } table.lb col.c-p { width:27%; } table.lb col.c-vp { width:31%; }
+    .vpline { flex-direction:column; align-items:stretch; gap:3px; } .vbar { height:12px; } .vseg img { display:none; } .lbp img { width:24px; height:24px; }
+    .ob { width:calc(50% - 4px); }
     table.lb th { padding:9px 2px; } table.lb td { padding:9px 2px; } table.lb th:first-child, table.lb td:first-child { padding-left:8px; }
     table.lb td small { font-size:10.5px; } .ic, .rb { width:16px; height:16px; } .rb { font-size:9.5px; }
     .vpbar { width:85%; }
@@ -627,18 +650,22 @@ function statsOf(p){
     frags:(p.fragments || []).reduce((a, f) => { const k = String(f).slice(0, 1); if ('chiu'.includes(k)) a[k] = (a[k] || 0) + 1; return a; }, {}) };
 }
 // AsyncTI4 game data -> a game tab (factions, players, stats, whose turn)
-const DATA_V = 3;   // bump when gameFromData keeps new fields, so saved games refetch once
+const DATA_V = 4;   // bump when gameFromData keeps new fields, so saved games refetch once
 function gameFromData(d, name){
   const factions = [], pl = {}, unknown = [];
   (d.playerData || []).forEach(p => {
     const k = keyOf(p.faction);
     if (!k){ if (p.faction && !['null', 'neutral'].includes(String(p.faction).toLowerCase())) unknown.push(p.faction); return; }   // neutral = the board's non-player units
     if (!factions.includes(k)) factions.push(k);
-    pl[k] = { color:p.color || '', user:p.userName || '', stats:statsOf(p) };
+    pl[k] = { color:p.color || '', user:p.userName || '', stats:statsOf(p),
+      vpb:(((d.scoreBreakdowns || {})[p.faction] || {}).entries || []).map(e => [e.type, e.state, e.pointValue || 0, e.description || '', e.currentProgress, e.totalProgress, e.objectiveKey || '']) };
   });
   const st = d.gameState || {};
   const sc = (d.strategyCards || []).filter(c => c.initiative >= 1 && c.initiative <= 8).map(c => ({ n:c.initiative, by:keyOf(c.pickedByFaction), played:!!c.played, tg:c.tradeGoods || 0 }));
-  const meta = { sc, vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
+  const ob = d.objectives || {}, objs = [];
+  [['stage1Objectives', 'I'], ['stage2Objectives', 'II']].forEach(([key, st]) => (ob[key] || []).forEach(o =>
+    objs.push({ st, name:o.revealed ? o.name : '', pv:o.pointValue || (st === 'I' ? 1 : 2), scored:(o.scoredFactions || []).map(keyOf).filter(Boolean) })));
+  const meta = { objs, sc, vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
     active:st.activePlayer || '', phase:st.phase || '', turnAt:st.turnStartedAt || 0, winner:st.winner || null };
   return { g:{ v:DATA_V, code:name || d.gameName, title:d.gameCustomName || '', factions, players:pl, meta, pasted:Date.now() }, unknown };
 }
@@ -997,6 +1024,35 @@ function showTrades(doPin, dir){
   const outer = document.createElement('div'); outer.className = 'tradewrap'; outer.append(wrap, note);
   stage.replaceChildren(outer); stage.scrollTop = 0;
 }
+const OBJ_TXT = /*OBJ*/;
+const VPT = {
+  PO_1:{ c:'#e8762c', i:'cards/tokens/obj-p1.webp', k:'Stage I objective' }, PO_2:{ c:'#2f7fe0', i:'cards/tokens/obj-p2.webp', k:'Stage II objective' },
+  SECRET:{ c:'#d6403a', i:'cards/tokens/obj-so.webp', k:'Secret objective' }, CUSTODIAN:{ c:'#c9a640', i:'cards/tokens/obj-cu.webp', k:'Custodians / Imperial' },
+  SFTT:{ c:'#9a6ee0', i:'', k:'Support for the Throne' }, CROWN:{ c:'#d9709f', i:'', k:'Relic' }, OTHER:{ c:'#8a94ad', i:'', k:'Other' } };
+const VPSTATE = { SCORED:'scored', QUALIFIES:'qualifies now', POTENTIAL:'possible' };
+// what a VP block means, for its hover: kind, points, state, name and the objective's wording
+function vpInfo(e, g){
+  let name = String(e[3]).replace(/\s*\(status phase\)\s*$/i, ''), x = OBJ_TXT[name] || '';
+  if (e[0] === 'SECRET' && /drawn secret/i.test(name)){ name = 'Unscored secret objective'; x = 'A secret objective they hold but haven\'t scored. Which one is hidden.'; }
+  if (e[0] === 'CUSTODIAN') x = 'Taking the custodians token off Mecatol Rex, or the Imperial strategy card while holding Mecatol Rex.';
+  if (e[0] === 'SFTT'){ const m = name.match(/\(([^)]+)\)/), giver = m && Object.values(g.players).find(p => p.color === m[1]); name = 'Support for the Throne' + (giver ? ' from ' + giver.user : ''); x = 'Worth 1 VP while they hold it.'; }
+  if (e[0] === 'CROWN') x = 'Relic: worth 1 VP while they control a planet with a Tomb of Emphidia.';
+  return { k:`${(VPT[e[0]] || VPT.OTHER).k} · ${e[2]} VP · ${VPSTATE[e[1]] || String(e[1]).toLowerCase()}${e[5] ? ` · ${e[4] ?? 0}/${e[5]}` : ''}`, n:name, x };
+}
+const vtip = document.createElement('div'); vtip.className = 'vtip'; document.body.appendChild(vtip);
+function showTip(el, ev){
+  const d = JSON.parse(el.dataset.tip);
+  vtip.innerHTML = `<div class="vk">${esc(d.k)}</div><b>${esc(d.n)}</b>${d.x ? `<div class="vx">${esc(d.x)}</div>` : ''}`;
+  vtip.classList.add('show');
+  const r = el.getBoundingClientRect(), w = vtip.offsetWidth, h = vtip.offsetHeight;
+  const x = ev && ev.clientX ? ev.clientX + 14 : r.left, y = ev && ev.clientY ? ev.clientY + 14 : r.bottom + 6;
+  vtip.style.left = Math.max(8, Math.min(innerWidth - w - 8, x)) + 'px';
+  vtip.style.top = (y + h > innerHeight - 8 ? Math.max(8, (ev && ev.clientY ? ev.clientY : r.top) - h - 10) : y) + 'px';
+}
+stage.addEventListener('mousemove', e => { const el = e.target.closest('[data-tip]'); el ? showTip(el, e) : vtip.classList.remove('show'); });
+stage.addEventListener('mouseleave', () => vtip.classList.remove('show'));
+stage.addEventListener('click', e => { const el = e.target.closest('[data-tip]'); if (el && matchMedia('(hover:none)').matches){ e.stopPropagation(); showTip(el); } }, true);
+document.addEventListener('touchstart', e => { if (!e.target.closest('[data-tip]')) vtip.classList.remove('show'); }, { passive:true });
 function showBoard(doPin, dir){
   const g = games[group]; if (!g) return;
   if (doPin){ pinned = true; document.body.classList.add('pinned'); }
@@ -1010,6 +1066,17 @@ function showBoard(doPin, dir){
   const rows = gameList(g).map(f => ({ f, p:g.players[f.key] || {}, s:(g.players[f.key] || {}).stats }));
   rows.sort((a, b) => ((b.s && b.s.vp) || 0) - ((a.s && a.s.vp) || 0));
   const win = (g.meta && g.meta.vpsToWin) || 10, v = (s, k) => s ? s[k] : '–';
+  // VP bar: one block per point source, scored first, then (after the line) what's still possible; widths share one scale
+  const maxPts = Math.max(win, ...rows.map(r => (r.p.vpb || []).reduce((a, e) => a + e[2], 0)));
+  const vpBar = p => {
+    const E = p.vpb || []; if (!E.length) return '';
+    const blk = e => { const t = VPT[e[0]] || VPT.OTHER, info = vpInfo(e, g);
+      return `<span class="vseg ${e[1] === 'QUALIFIES' ? 'q' : e[1] === 'SCORED' ? '' : 'pot'}" style="--k:${t.c};flex:${e[2]} 0 0" data-tip="${esc(JSON.stringify(info))}">${t.i ? `<img src="${t.i}" alt="">` : ''}</span>`; };
+    const sc = E.filter(e => e[1] === 'SCORED'), ot = E.filter(e => e[1] !== 'SCORED');
+    const used = E.reduce((a, e) => a + e[2], 0);
+    return `<div class="vbar">${sc.map(blk).join('')}<span class="vgoal"></span>${ot.map(blk).join('')}<span style="flex:${Math.max(0, maxPts - used)} 0 0"></span></div>`;
+  };
+  const objs = (g.meta && g.meta.objs) || [];
   const wrap = document.createElement('div');
   wrap.className = 'board-wrap' + (dir ? (dir > 0 ? ' from-right' : ' from-left') : '');
   wrap.innerHTML = `<table class="lb">
@@ -1018,10 +1085,15 @@ function showBoard(doPin, dir){
       <th title="Planets">${ICON.planet}</th><th title="Total resources"><span class="rb res">R</span></th><th title="Total influence"><span class="rb inf">I</span></th>
       <th title="Action cards in hand">${ICON.cards}</th><th title="Ships on the board (not counting fighters)">${ICON.ship}</th><th title="Ground forces: infantry and mechs">${ICON.ground}</th></tr></thead>
     <tbody>${rows.map(({ f, p, s }) => `<tr data-i="${f.i}"${f.key === tk ? ' class="turn" title="Their turn"' : ''}>
-      <td><span class="pdot" style="background:${dotColor(p.color)}"></span>${f.sort}<small>${esc(p.user || '')}</small></td>
-      <td><b>${v(s, 'vp')}</b><span class="of"> / ${win}</span><div class="vpbar"><i style="width:${s ? Math.min(100, s.vp / win * 100) : 0}%"></i></div></td>
+      <td><div class="lbp"><img src="${f.thumb}" alt="" style="border-color:${dotColor(p.color)}"><div>${f.sort}<small>${esc(p.user || '')}</small></div></div></td>
+      <td><div class="vpline"><span class="vpn"><b>${v(s, 'vp')}</b><span class="of"> / ${win}</span></span>${vpBar(p)}</div></td>
       <td>${v(s, 'planets')}</td><td>${v(s, 'res')}</td><td>${v(s, 'inf')}</td><td>${v(s, 'ac')}</td>
       <td${s ? ` title="+${s.fighters} fighters"` : ''}>${v(s, 'ships')}</td><td>${v(s, 'ground')}</td></tr>`).join('')}</tbody></table>
+    ${objs.length ? `<h4 class="objh">Public objectives</h4><div class="objs">${objs.map(o => {
+      const t = o.st === 'I' ? VPT.PO_1 : VPT.PO_2;
+      if (!o.name) return `<div class="ob un" style="--k:${t.c}"><div class="obst"><img src="cards/tokens/obj-c${o.st === 'I' ? 1 : 2}.webp" alt="">STAGE ${o.st} · ${o.pv} VP</div><div class="obq">?</div></div>`;
+      return `<div class="ob" style="--k:${t.c}" data-tip="${esc(JSON.stringify({ k:`Stage ${o.st} objective · ${o.pv} VP`, n:o.name, x:OBJ_TXT[o.name] || '' }))}"><div class="obst"><img src="cards/tokens/obj-c${o.st === 'I' ? 1 : 2}.webp" alt="">STAGE ${o.st} · ${o.pv} VP</div><div class="obn">${esc(o.name)}</div><div>${o.scored.map(k => `<span class="pdot" style="background:${dotColor((g.players[k] || {}).color)}"></span>`).join('')}</div></div>`;
+    }).join('')}</div>` : ''}
     <p class="lbnote">${g.live
       ? `<span class="${g.failed ? 'bad' : 'live'}">●</span> ${g.failed ? "Couldn't reach AsyncTI4 just now" : 'Live'} · checked ${ago(g.checked || g.pasted)} · new moves show up within 2 minutes <button class="linkbtn" id="lbrefresh">Check now</button> · <button class="linkbtn" id="lbshare">Copy link to this game</button><br>Tap a player to see their faction.`
       : rows.some(r => r.s) ? `Tap a player to see their faction. Numbers as of your paste${when ? ' on ' + when : ''}: add the game again with fresh data to update them.` : 'No stats yet: add this game again with its AsyncTI4 data to fill the table.'}</p>`;
