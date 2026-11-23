@@ -180,6 +180,7 @@
   body.board .viewbar { visibility:hidden; }
   .sct .th { display:grid !important; place-items:center; aspect-ratio:1; border-radius:10px; border:2px solid rgba(138,148,173,.35); background:#141a2b; }
   .sct.active .th, .sct:hover .th { border-color:var(--acc); box-shadow:0 0 14px rgba(240,185,58,.45); }
+  .fac .th img.tileic { width:66%; height:auto; aspect-ratio:auto; border:none; border-radius:0; box-shadow:none; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,.6)); }
   .sct .th img.scimg { width:86%; height:auto; aspect-ratio:auto; border:none; border-radius:0; box-shadow:none; object-fit:contain; }
   .scic { display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; width:74%; }
   .scic i { display:grid; place-items:center; aspect-ratio:3/4; border-radius:2px; background:var(--k); color:#0b0e17; font:800 8px/1 Inter, sans-serif; font-style:normal; }
@@ -542,7 +543,7 @@ function setGroup(gi){
   if (gi >= 0 && g.factions.length){
     const b = document.createElement('div');
     b.className = 'fac lbt';
-    b.innerHTML = `<button class="pick" aria-label="Leaderboard"><span class="th"><span class="lbic">🏆</span></span><span>Leaderboard</span><em>${g.meta && g.meta.round ? 'round ' + g.meta.round : esc(g.code)}</em></button>`;
+    b.innerHTML = `<button class="pick" aria-label="Leaderboard"><span class="th"><img class="tileic" src="cards/tokens/tile-vp.webp" alt="" draggable="false"></span><span>Leaderboard</span><em>${g.meta && g.meta.round ? 'round ' + g.meta.round : esc(g.code)}</em></button>`;
     b.addEventListener('mouseenter', () => { if (!pinned) showBoard(false); });
     b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showBoard(true); });
     row.appendChild(b);
@@ -558,7 +559,7 @@ function setGroup(gi){
   if (gi >= 0 && g.factions.length){
     const b = document.createElement('div');
     b.className = 'fac trt';
-    b.innerHTML = `<button class="pick" aria-label="Trades"><span class="th"><span class="lbic">🤝</span></span><span>Trades</span><em>notes · commanders</em></button>`;
+    b.innerHTML = `<button class="pick" aria-label="Trades"><span class="th"><img class="tileic" src="cards/tokens/tile-trade.webp" alt="" draggable="false"></span><span>Trades</span><em>notes · commanders</em></button>`;
     b.addEventListener('mouseenter', () => { if (!pinned) showTrades(false); });
     b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showTrades(true); });
     row.appendChild(b);
