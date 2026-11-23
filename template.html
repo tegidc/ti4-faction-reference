@@ -180,6 +180,7 @@
   body.board .viewbar { visibility:hidden; }
   .sct .th { display:grid !important; place-items:center; aspect-ratio:1; border-radius:10px; border:2px solid rgba(138,148,173,.35); background:#141a2b; }
   .sct.active .th, .sct:hover .th { border-color:var(--acc); box-shadow:0 0 14px rgba(240,185,58,.45); }
+  .sct .th img.scimg { width:86%; height:auto; aspect-ratio:auto; border:none; border-radius:0; box-shadow:none; object-fit:contain; }
   .scic { display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; width:74%; }
   .scic i { display:grid; place-items:center; aspect-ratio:3/4; border-radius:2px; background:var(--k); color:#0b0e17; font:800 8px/1 Inter, sans-serif; font-style:normal; }
   .sct em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
@@ -549,7 +550,7 @@ function setGroup(gi){
   {
     const b = document.createElement('div');
     b.className = 'fac sct';
-    b.innerHTML = `<button class="pick" aria-label="Strategy cards"><span class="th"><span class="scic">${[1,2,3,4,5,6,7,8].map(n => `<i style="--k:${SCOL[n]}">${n}</i>`).join('')}</span></span><span>Strategy cards</span>${g && g.meta && g.meta.sc ? '<em>this round</em>' : ''}</button>`;
+    b.innerHTML = `<button class="pick" aria-label="Strategy cards"><span class="th"><img class="scimg" src="cards/strategy/tile.webp" alt="" draggable="false"></span><span>Strategy cards</span>${g && g.meta && g.meta.sc ? '<em>this round</em>' : ''}</button>`;
     b.addEventListener('mouseenter', () => { if (!pinned) showStrategy(false); });
     b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showStrategy(true); });
     row.appendChild(b);
