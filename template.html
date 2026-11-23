@@ -208,6 +208,20 @@
   .goods .grow-rl { gap:3px 10px; }
   .goods .none { color:#4d5672; font-size:11px; }
   .goods .more { font:700 11px Inter, sans-serif; color:var(--dim); margin-left:4px; }
+  .goods .pnb { width:15px; height:21px; display:block; }
+  .goods .grow-pn .pnb + .pnb { margin-left:-4px; }
+  .goods .grow-pu { gap:5px; }
+  .pnc { width:24px; height:34px; padding:0; border-radius:4px; border:2px solid var(--gc); background:#1d2440; cursor:pointer; overflow:hidden; display:grid; place-items:center; }
+  .pnc img { width:100%; height:100%; object-fit:cover; display:block; }
+  .pnc span { font:800 9px Inter, sans-serif; color:var(--gc); }
+  .pnc:hover, .pnc.held { box-shadow:0 0 10px var(--gc); }
+  .pnpop { position:fixed; z-index:55; display:none; pointer-events:auto; background:#111727; border:1px solid rgba(138,148,173,.35); border-radius:12px; padding:8px; box-shadow:0 14px 36px rgba(0,0,0,.6); }
+  .pnpop.show { display:block; }
+  .pnpop img { width:100%; display:block; border-radius:8px; }
+  .pngen { border:2px solid var(--gc); border-radius:10px; padding:12px; background:linear-gradient(160deg, rgba(255,255,255,.05), rgba(0,0,0,.2)); }
+  .pngen b { display:block; font:800 13px Orbitron, sans-serif; color:var(--gc); margin-bottom:6px; }
+  .pngen p { margin:0; font-size:12.5px; line-height:1.4; color:#dfe4ef; }
+  .pnfrom { font-size:12px; color:#c3cadb; margin-top:6px; }
   .relic { display:inline-flex; align-items:center; gap:3px; font-size:11.5px; color:#ffd88a; white-space:nowrap; } .relic.ex { opacity:.5; }
   .tcard { margin:0; } .tcard img { width:100%; height:auto; display:block; border-radius:8px; cursor:zoom-in; filter:drop-shadow(0 0 12px rgba(80,130,255,.22)); }
   .tcard figcaption { font-size:11.5px; color:#c3cadb; margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -598,11 +612,12 @@ function statsOf(p){
     ac:p.acCount || 0, ships:SHIPS.reduce((a, k) => a + n(k), 0), fighters:n('ff'), ground:GROUND.reduce((a, k) => a + n(k), 0), leaders,
     // tradeable bits for the Trades view
     tg:p.tg || 0, comm:p.commodities || 0, commMax:p.commoditiesTotal || 0,
+    pnCount:p.pnCount || 0, pnPlay:p.promissoryNotesInPlayArea || [], pnOwn:p.customPromissoryNotes || [],
     relics:(p.relics || []).map(r => ({ id:r, exhausted:(p.exhaustedRelics || []).includes(r) })),
     frags:(p.fragments || []).reduce((a, f) => { const k = String(f).slice(0, 1); if ('chiu'.includes(k)) a[k] = (a[k] || 0) + 1; return a; }, {}) };
 }
 // AsyncTI4 game data -> a game tab (factions, players, stats, whose turn)
-const DATA_V = 2;   // bump when gameFromData keeps new fields, so saved games refetch once
+const DATA_V = 3;   // bump when gameFromData keeps new fields, so saved games refetch once
 function gameFromData(d, name){
   const factions = [], pl = {}, unknown = [];
   (d.playerData || []).forEach(p => {
@@ -834,7 +849,66 @@ const FRAG_ICON = c => `<svg viewBox="0 0 32 32" class="tok"><path d="M16 3l11 7
 const RELIC_ICON = '<svg viewBox="0 0 32 32" class="tok"><path d="M16 2l6 9-6 19-6-19z" fill="#f2c94c" stroke="#7a5408" stroke-width="1.5"/><path d="M10 11h12" stroke="#7a5408" stroke-width="1.2"/></svg>';
 const TG_EMPTY = '<svg viewBox="0 0 32 32" class="tok"><circle cx="16" cy="16" r="14" fill="none" stroke="#b8902a" stroke-width="2" stroke-dasharray="4 3"/></svg>';   // no trade goods: an empty gold outline
 const tokens = (n, html, cap = 10) => html.repeat(Math.min(n, cap)) + (n > cap ? `<b class="more">+${n - cap}</b>` : '');
-function goodsBlock(st){
+// ---------- promissory notes: how many in hand (hands are secret), and the ones face up in front of a player ----------
+const GENERIC_PN = {
+  sftt:['Support for the Throne', 'Worth 1 VP to whoever holds it. Goes back if they activate a system with the giver\'s units, or the giver is eliminated.'],
+  an:['Alliance', 'The holder can use the giver\'s commander ability, once the giver has unlocked it.'],
+  cf:['Ceasefire', 'Played when the giver activates a system with the holder\'s units: the giver can\'t move units into it.'],
+  ta:['Trade Agreement', 'When the giver replenishes commodities, they go to the holder instead.'],
+  ps:['Political Secret', 'The giver can\'t vote or use voting abilities during this agenda phase.']
+};
+// work out a face-up note: whose it was, and its card image if it's a faction note
+function noteInfo(id, g){
+  const m = String(id).match(/^(.+)_(sftt|an|cf|ta|ps)$/);
+  if (m){
+    const giverKey = Object.keys(g.players).find(k => g.players[k].color === m[1]);
+    return { generic:true, name:GENERIC_PN[m[2]][0], text:GENERIC_PN[m[2]][1], color:dotColor(m[1]), giver:giverKey ? g.players[giverKey].user : m[1] };
+  }
+  const ownerKey = Object.keys(g.players).find(k => ((g.players[k].stats || {}).pnOwn || []).includes(id));
+  const f = ownerKey && F.find(x => x.key === ownerKey);
+  const pns = f ? f.special.filter(it => it.kind === 'Promissory note' && !/^plot/.test(it.key)) : [];
+  const word = String(id).split('_')[0];
+  const card = pns.find(it => it.key.includes(word)) || pns[0];
+  return { generic:false, name:card ? card.kind : String(id).replace(/_/g, ' '), src:card && card.src, color:ownerKey ? dotColor(g.players[ownerKey].color) : '#8a94ad', giver:ownerKey ? g.players[ownerKey].user : '' , faction:f ? f.sort : '' };
+}
+const PN_BACK = '<svg viewBox="0 0 20 28" class="pnb"><rect x="1" y="1" width="18" height="26" rx="2.5" fill="#1d2440" stroke="#8a94ad" stroke-width="1.2"/><path d="M10 7l5 7-5 7-5-7z" fill="none" stroke="#c3cadb" stroke-width="1.2"/></svg>';
+function notesRows(st, g){
+  if (!st || st.pnCount === undefined) return '';
+  let out = `<div class="grow-pn" title="${st.pnCount} promissory note${st.pnCount === 1 ? '' : 's'} in hand (which ones is secret)">${st.pnCount ? tokens(st.pnCount, PN_BACK) : '<span class="none">no notes in hand</span>'}</div>`;
+  if (g && st.pnPlay && st.pnPlay.length){
+    out += `<div class="grow-pu">${st.pnPlay.map(id => {
+      const n = noteInfo(id, g);
+      const face = n.src ? `<img src="${n.src}" alt="">` : `<span>${esc(n.name.split(' ').map(w => w[0]).join(''))}</span>`;
+      return `<button class="pnc${n.generic ? ' gen' : ''}" style="--gc:${n.color}" data-pn="${esc(JSON.stringify(n))}" aria-label="${esc(n.name)} from ${esc(n.giver)}">${face}</button>`;
+    }).join('')}</div>`;
+  }
+  return out;
+}
+// hover a face-up note to see it big; click to keep it open (click anywhere else to close)
+const pnPop = document.createElement('div'); pnPop.className = 'pnpop'; document.body.appendChild(pnPop);
+let pnHeld = null;
+function showNote(btn){
+  const n = JSON.parse(btn.dataset.pn);
+  pnPop.innerHTML = (n.src ? `<img src="${n.src}" alt="">` : `<div class="pngen" style="--gc:${n.color}"><b>${esc(n.name)}</b><p>${esc(n.text)}</p></div>`)
+    + `<div class="pnfrom"><span class="pdot" style="background:${n.color}"></span>${n.generic ? '' : esc(n.name) + ' · '}from ${esc(n.giver)}${n.faction ? ' (' + esc(n.faction) + ')' : ''}</div>`;
+  const r = btn.getBoundingClientRect(), w = Math.min(260, innerWidth - 24);
+  pnPop.style.width = w + 'px';
+  pnPop.style.left = Math.max(12, Math.min(innerWidth - w - 12, r.left + r.width / 2 - w / 2)) + 'px';
+  pnPop.classList.add('show');
+  const h = pnPop.offsetHeight;
+  pnPop.style.top = (r.bottom + 8 + h < innerHeight ? r.bottom + 8 : Math.max(8, r.top - h - 8)) + 'px';
+}
+function hideNote(){ pnPop.classList.remove('show'); pnHeld = null; document.querySelectorAll('.pnc.held').forEach(b => b.classList.remove('held')); }
+stage.addEventListener('mouseover', e => { const b = e.target.closest('.pnc'); if (b && !pnHeld) showNote(b); });
+stage.addEventListener('mouseout', e => { const b = e.target.closest('.pnc'); if (b && !pnHeld && !b.contains(e.relatedTarget)) pnPop.classList.remove('show'); });
+stage.addEventListener('click', e => {
+  const b = e.target.closest('.pnc'); if (!b) return;
+  e.stopPropagation();
+  if (pnHeld === b){ hideNote(); return; }
+  hideNote(); pnHeld = b; b.classList.add('held'); showNote(b);
+}, true);
+document.addEventListener('click', e => { if (pnHeld && !e.target.closest('.pnpop')) hideNote(); });
+function goodsBlock(st, g){
   if (!st || st.comm === undefined) return '<div class="goods muted">Goods show up after the next update</div>';
   const rows = [];
   // commodities first: they're what a player has to trade away
@@ -843,10 +917,11 @@ function goodsBlock(st){
   const fr = Object.keys(FRAG).filter(k => st.frags && st.frags[k]);
   if (fr.length) rows.push(`<div class="grow-fr">${fr.map(k => `<span title="${st.frags[k]} ${FRAG[k][0].toLowerCase()} relic fragment${st.frags[k] > 1 ? 's' : ''}">${tokens(st.frags[k], FRAG_ICON(FRAG[k][1]))}</span>`).join('')}</div>`);
   if (st.relics && st.relics.length) rows.push(`<div class="grow-rl">${st.relics.map(r => `<span class="relic${r.exhausted ? ' ex' : ''}" title="${r.exhausted ? 'Exhausted relic' : 'Relic'}">${RELIC_ICON}${esc(relicName(r.id))}</span>`).join('')}</div>`);
-  return `<div class="goods">${rows.join('')}</div>`;
+  return `<div class="goods">${rows.join('')}${notesRows(st, g)}</div>`;
 }
 function showTrades(doPin, dir){
   const g = games[group]; if (!g) return;
+  hideNote();
   if (doPin){ pinned = true; document.body.classList.add('pinned'); }
   current = TR; markActive(doPin);
   document.body.classList.add('chosen', 'board');
@@ -858,7 +933,7 @@ function showTrades(doPin, dir){
     return { f, p, locked: st && st.leaders && st.leaders.commander === 'locked', unlocked: st && st.leaders && st.leaders.commander === 'unlocked', pns, cmd };
   });
   const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
-  const HEAD = 24, CAP = 22, GOODS = 16 + 27 * Math.max(...cols.map(c => { const s = c.p.stats || {}; return 2 + (s.frags && Object.keys(s.frags).length ? 1 : 0) + (s.relics && s.relics.length ? 1 : 0); })), W = stage.clientWidth, H = stage.clientHeight;
+  const HEAD = 24, CAP = 22, GOODS = 16 + 27 * Math.max(...cols.map(c => { const s = c.p.stats || {}; return 3 + (s.frags && Object.keys(s.frags).length ? 1 : 0) + (s.relics && s.relics.length ? 1 : 0) + (s.pnPlay && s.pnPlay.length ? 1.4 : 0); })), W = stage.clientWidth, H = stage.clientHeight;
   // one column per player: notes on top, commander below; size so the tallest column fits
   let c = (W - gap * (cols.length - 1)) / cols.length;
   if (!isPhone()){
@@ -871,7 +946,7 @@ function showTrades(doPin, dir){
   cols.forEach(col => {
     const d = document.createElement('div'); d.className = 'tcol';
     if (!isPhone()) d.style.width = c + 'px';
-    d.innerHTML = `<div class="thead"><span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span></div>${goodsBlock(col.p.stats)}`;
+    d.innerHTML = `<div class="thead"><span class="pdot" style="background:${dotColor(col.p.color)}"></span>${esc(col.p.user || '')} <span class="was">${col.f.sort}</span></div>${goodsBlock(col.p.stats, g)}`;
     const add = (it, cls, cap) => {
       const fig = document.createElement('figure'); fig.className = 'tcard ' + cls;
       const img = new Image(); img.src = it.src; img.alt = `${col.f.name} – ${it.kind}`; img.title = it.kind;
