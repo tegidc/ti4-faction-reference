@@ -178,6 +178,14 @@
   .lbt.active .th, .lbt:hover .th { border-color:var(--acc); box-shadow:0 0 14px rgba(240,185,58,.45); }
   .lbt em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
   body.board .viewbar { visibility:hidden; }
+  .sct .th { display:grid !important; place-items:center; aspect-ratio:1; border-radius:10px; border:2px solid rgba(138,148,173,.35); background:#141a2b; }
+  .sct.active .th, .sct:hover .th { border-color:var(--acc); box-shadow:0 0 14px rgba(240,185,58,.45); }
+  .scic { display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; width:74%; }
+  .scic i { display:grid; place-items:center; aspect-ratio:3/4; border-radius:2px; background:var(--k); color:#0b0e17; font:800 8px/1 Inter, sans-serif; font-style:normal; }
+  .sct em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
+  .gal .ld.sc figcaption { -webkit-line-clamp:1; font-size:12px; }
+  .gal .ld.sc figcaption b { color:var(--acc); }
+  .gal .ld.sc.played img { opacity:.45; filter:grayscale(.6); }
   .board-wrap { width:min(100%, 860px); margin:auto; animation:pop .14s ease; align-self:center; }
   .board-wrap.from-right { animation:fromRight .18s ease; } .board-wrap.from-left { animation:fromLeft .18s ease; }
   table.lb { width:100%; border-collapse:collapse; table-layout:fixed; font-size:15px; background:rgba(20,26,42,.75); border-radius:14px; overflow:hidden; }
@@ -350,7 +358,7 @@ const $ = id => document.getElementById(id);
 const stage = $('stage'), row = $('row'), list = $('list'), q = $('q'), zoom = $('zoom');
 
 // ---------- one sideways-scrolling row: all factions, or one game's factions ----------
-const N = F.length, ALL = -1, LB = -2;   // LB: the leaderboard is showing instead of a faction
+const N = F.length, ALL = -1, LB = -2, SC = -3;   // LB / SC: the leaderboard or the strategy cards are showing instead of a faction
 F.forEach((f, i) => { f.i = i; f.g = ALL; });
 
 let group = ALL, view = 'overview', current = -1, pinned = false;
@@ -403,7 +411,7 @@ function toggleGame(i){
 }
 function refreshStars(){
   const g = starGame();
-  row.querySelectorAll('.fac:not(.lbt)').forEach(el => {
+  row.querySelectorAll('.fac:not(.lbt):not(.sct)').forEach(el => {
     const on = inGame(+el.dataset.i, g);
     el.classList.toggle('starred', on);
     const s = el.querySelector('.fstar'); s.textContent = on ? '★' : '☆';
@@ -444,6 +452,22 @@ function setGroup(gi){
   row.innerHTML = '';
   const g = games[gi], facs = gi >= 0 ? gameList(g) : visibleList();
   row.classList.toggle('game', gi >= 0);
+  if (gi >= 0 && g.factions.length){
+    const b = document.createElement('div');
+    b.className = 'fac lbt';
+    b.innerHTML = `<button class="pick" aria-label="Leaderboard"><span class="th"><span class="lbic">🏆</span></span><span>Leaderboard</span><em>${g.meta && g.meta.round ? 'round ' + g.meta.round : esc(g.code)}</em></button>`;
+    b.addEventListener('mouseenter', () => { if (!pinned) showBoard(false); });
+    b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showBoard(true); });
+    row.appendChild(b);
+  }
+  {
+    const b = document.createElement('div');
+    b.className = 'fac sct';
+    b.innerHTML = `<button class="pick" aria-label="Strategy cards"><span class="th"><span class="scic">${[1,2,3,4,5,6,7,8].map(n => `<i style="--k:${SCOL[n]}">${n}</i>`).join('')}</span></span><span>Strategy cards</span>${g && g.meta && g.meta.sc ? '<em>this round</em>' : ''}</button>`;
+    b.addEventListener('mouseenter', () => { if (!pinned) showStrategy(false); });
+    b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showStrategy(true); });
+    row.appendChild(b);
+  }
   facs.forEach(f => {
     const el = document.createElement('div');
     el.className = 'fac'; el.dataset.i = f.i;
@@ -457,14 +481,6 @@ function setGroup(gi){
     el.querySelector('.fstar').addEventListener('click', e => { e.stopPropagation(); toggleGame(f.i); });
     row.appendChild(el);
   });
-  if (gi >= 0 && g.factions.length){
-    const b = document.createElement('div');
-    b.className = 'fac lbt';
-    b.innerHTML = `<button class="pick" aria-label="Leaderboard"><span class="th"><span class="lbic">🏆</span></span><span>Leaderboard</span><em>${g.meta && g.meta.round ? 'round ' + g.meta.round : esc(g.code)}</em></button>`;
-    b.addEventListener('mouseenter', () => { if (!pinned) showBoard(false); });
-    b.querySelector('.pick').addEventListener('click', e => { e.stopPropagation(); if (!dragged) showBoard(true); });
-    row.appendChild(b);
-  }
   if (gi >= 0){
     if (!g.factions.length)
       row.insertAdjacentHTML('beforeend', `<div class="hint">No factions in <b>${esc(g.code)}</b> yet. Go to <b>All factions</b> and tap the <b>☆</b> on each one in this game.</div>`);
@@ -483,9 +499,10 @@ function setGroup(gi){
   refreshStars();
   markActive();
   row.scrollLeft = 0;
-  if (current === LB){ if (gi >= 0 && g.factions.length) showBoard(pinned); else unpin(); }
+  if (current === SC) showStrategy(pinned);
+  else if (current === LB){ if (gi >= 0 && g.factions.length) showBoard(pinned); else unpin(); }
   // switching to a game tab while looking at a faction that isn't in it: open on the leaderboard
-  else if (gi >= 0 && g.factions.length && !(current >= 0 && inGame(current, g))) showBoard(true);
+  else if (gi >= 0 && g.factions.length && current !== SC && !(current >= 0 && inGame(current, g))) showBoard(true);
 }
 // mouse wheel scrolls the row sideways; drag to scroll on desktop too
 row.addEventListener('wheel', e => {
@@ -542,7 +559,8 @@ function gameFromData(d, name){
     pl[k] = { color:p.color || '', user:p.userName || '', stats:statsOf(p) };
   });
   const st = d.gameState || {};
-  const meta = { vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
+  const sc = (d.strategyCards || []).filter(c => c.initiative >= 1 && c.initiative <= 8).map(c => ({ n:c.initiative, by:keyOf(c.pickedByFaction), played:!!c.played, tg:c.tradeGoods || 0 }));
+  const meta = { sc, vpsToWin:d.vpsToWin || 0, round:d.gameRound || 0, seq:d.eventSequence ?? null,
     active:st.activePlayer || '', phase:st.phase || '', turnAt:st.turnStartedAt || 0, winner:st.winner || null };
   return { g:{ code:name || d.gameName, title:d.gameCustomName || '', factions, players:pl, meta, pasted:Date.now() }, unknown };
 }
@@ -672,7 +690,8 @@ function flash(msg){ const n = $('toast'); n.textContent = msg; n.classList.add(
 
 function markActive(scroll){
   const lbt = row.querySelector('.lbt'); if (lbt) lbt.classList.toggle('active', current === LB);
-  row.querySelectorAll('.fac:not(.lbt)').forEach(el => {
+  const sct = row.querySelector('.sct'); if (sct) sct.classList.toggle('active', current === SC);
+  row.querySelectorAll('.fac:not(.lbt):not(.sct)').forEach(el => {
     const on = +el.dataset.i === current;
     el.classList.toggle('active', on);
     if (on && scroll){
@@ -707,6 +726,42 @@ function show(i, dir){
   if (!same || dir) render(dir);
 }
 // ---------- leaderboard: the game's standings, shown in the big middle space ----------
+// ---------- strategy cards: the 8 cards; on a game tab, who picked which ----------
+const SCOL = { 1:'#e5453a', 2:'#f08a24', 3:'#f2c518', 4:'#3fb54a', 5:'#19b3a6', 6:'#2fa4e7', 7:'#2e5ad6', 8:'#9b4fd6' };
+const SNAME = { 1:'Leadership', 2:'Diplomacy', 3:'Politics', 4:'Construction', 5:'Trade', 6:'Warfare', 7:'Technology', 8:'Imperial' };
+function showStrategy(doPin, dir){
+  if (doPin){ pinned = true; document.body.classList.add('pinned'); }
+  current = SC; markActive(doPin);
+  document.body.classList.add('chosen', 'board');
+  const g = group >= 0 ? games[group] : null, picks = g && g.meta && g.meta.sc;
+  $('title').innerHTML = `Strategy cards<small>${picks ? `${esc(g.title || g.code)} · round ${g.meta.round || '?'} picks` : 'primary and secondary abilities'}</small>`;
+  const items = [1,2,3,4,5,6,7,8].map(n => ({ n, src:`cards/strategy/${n}.webp`, w:400, h:494, s:1, kind:SNAME[n] }));
+  const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
+  const CAPH = picks ? 26 : 0;
+  const gal = document.createElement('div');
+  gal.className = 'gal multi scgal' + (dir ? (dir > 0 ? ' from-right' : ' from-left') : '');
+  const rows = isPhone() ? [items.slice(0, 2), items.slice(2, 4), items.slice(4, 6), items.slice(6, 8)] : null;
+  const L = isPhone() ? null : (() => { let best = null; for (const r of [1, 2]){ const f = fit(chunk(items, r), stage.clientWidth, stage.clientHeight - CAPH * r, gap); if (!best || f.area > best.area) best = f; } return best; })();
+  (L ? L.rows : rows).forEach((rw, k) => {
+    const r = document.createElement('div'); r.className = 'grow' + (isPhone() ? ' lead' : '');
+    rw.forEach(it => {
+      const fig = document.createElement('figure'); fig.className = 'ld sc';
+      const img = new Image(); img.src = it.src; img.alt = `${it.n} ${it.kind}`; img.title = `${it.n} ${it.kind}`;
+      if (L){ img.style.height = L.hs[k] + 'px'; img.style.width = (L.hs[k] * it.w / it.h) + 'px'; fig.style.width = img.style.width; }
+      img.addEventListener('click', e => { e.stopPropagation(); openZoom(it.src); });
+      fig.appendChild(img);
+      const pk = picks && picks.find(c => c.n === it.n);
+      if (pk){
+        const p = pk.by && g.players[pk.by], f = pk.by && F.find(x => x.key === pk.by);
+        if (pk.played) fig.classList.add('played');
+        fig.insertAdjacentHTML('beforeend', `<figcaption>${p ? `<span class="pdot" style="background:${dotColor(p.color)}"></span>${esc(p.user)} <span class="was">(${f ? f.sort : ''})</span>${pk.played ? ' · <b>played</b>' : ''}` : `<span class="was">not picked</span>${pk.tg ? ` · <b>+${pk.tg} TG</b>` : ''}`}</figcaption>`);
+      }
+      r.appendChild(fig);
+    });
+    gal.appendChild(r);
+  });
+  stage.replaceChildren(gal); stage.scrollTop = 0;
+}
 function showBoard(doPin, dir){
   const g = games[group]; if (!g) return;
   if (doPin){ pinned = true; document.body.classList.add('pinned'); }
@@ -838,6 +893,7 @@ function layout(items, W, H, gap){
 }
 function render(dir){
   if (current === LB) return showBoard(pinned, dir);
+  if (current === SC) return showStrategy(pinned, dir);
   const f = F[current], hasSheet = f[view].some(it => it.kind === 'Faction sheet');
   // next to a faction sheet, smaller cards (mech) show at ~60% of its height
   const items = f[view].map(it => ({ ...it, s: hasSheet && it.kind !== 'Faction sheet' ? .6 : 1 }));
@@ -895,8 +951,8 @@ let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() 
 // ---------- zoom ----------
 function openZoom(src){
   // desktop, single card already filling the stage: a click means "let go"
-  if (!isPhone() && F[current][view].length === 1 && pinned){ unpin(); return; }
-  if (!pinned) pin(current);
+  if (!isPhone() && current >= 0 && F[current][view].length === 1 && pinned){ unpin(); return; }
+  if (!pinned && current >= 0) pin(current);
   zoom.querySelector('img').src = src; zoom.classList.remove('big'); zoom.classList.add('open');
 }
 zoom.addEventListener('click', e => {
@@ -951,13 +1007,13 @@ function step(dir){
   // inside a game tab, arrows/swipes cycle just that game's factions
   if (group >= 0 && games[group].factions.length){
     // the game's factions, then the leaderboard, then round again
-    const L = [...gameList(games[group]).map(f => f.i), LB], at = L.indexOf(current);
+    const L = [LB, SC, ...gameList(games[group]).map(f => f.i)], at = L.indexOf(current);
     const j = at < 0 ? (dir > 0 ? 0 : L.length - 1) : (at + dir + L.length) % L.length;
-    return L[j] === LB ? showBoard(true, dir) : pin(L[j], dir);
+    return L[j] === LB ? showBoard(true, dir) : L[j] === SC ? showStrategy(true, dir) : pin(L[j], dir);
   }
-  const V = visibleList(), at = V.findIndex(f => f.i === current);
+  const V = [SC, ...visibleList().map(f => f.i)], at = V.indexOf(current);
   const j = at < 0 ? (dir > 0 ? 0 : V.length - 1) : (at + dir + V.length) % V.length;
-  pin(V[j].i, dir);
+  V[j] === SC ? showStrategy(true, dir) : pin(V[j], dir);
 }
 let tx = null, ty = null, swiped = false;
 stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; swiped = false; }, { passive:true });
