@@ -830,8 +830,9 @@ const tokens = (n, html, cap = 10) => html.repeat(Math.min(n, cap)) + (n > cap ?
 function goodsBlock(st){
   if (!st || st.comm === undefined) return '<div class="goods muted">Goods show up after the next update</div>';
   const rows = [];
-  rows.push(`<div class="grow-tg" title="Trade goods: ${st.tg}">${st.tg ? tokens(st.tg, TG_ICON) : '<span class="none">no trade goods</span>'}</div>`);
+  // commodities first: they're what a player has to trade away
   if (st.commMax) rows.push(`<div class="grow-cm" title="Commodities: ${st.comm} of ${st.commMax}">${tokens(st.comm, COMM_ICON(true))}${tokens(Math.max(0, st.commMax - st.comm), COMM_ICON(false))}</div>`);
+  rows.push(`<div class="grow-tg" title="Trade goods: ${st.tg}">${st.tg ? tokens(st.tg, TG_ICON) : '<span class="none">no trade goods</span>'}</div>`);
   const fr = Object.keys(FRAG).filter(k => st.frags && st.frags[k]);
   if (fr.length) rows.push(`<div class="grow-fr">${fr.map(k => `<span title="${st.frags[k]} ${FRAG[k][0].toLowerCase()} relic fragment${st.frags[k] > 1 ? 's' : ''}">${tokens(st.frags[k], FRAG_ICON(FRAG[k][1]))}</span>`).join('')}</div>`);
   if (st.relics && st.relics.length) rows.push(`<div class="grow-rl">${st.relics.map(r => `<span class="relic${r.exhausted ? ' ex' : ''}" title="${r.exhausted ? 'Exhausted relic' : 'Relic'}">${RELIC_ICON}${esc(relicName(r.id))}</span>`).join('')}</div>`);
