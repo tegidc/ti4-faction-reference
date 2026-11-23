@@ -925,7 +925,7 @@ function goodsBlock(st, g){
   const fr = Object.keys(FRAG).filter(k => st.frags && st.frags[k]);
   if (fr.length) rows.push(`<div class="grow-fr">${fr.map(k => `<span title="${st.frags[k]} ${FRAG[k][0].toLowerCase()} relic fragment${st.frags[k] > 1 ? 's' : ''}">${tokens(st.frags[k], FRAG_ICON(FRAG[k][1]))}</span>`).join('')}</div>`);
   if (st.relics && st.relics.length) rows.push(`<div class="grow-rl">${st.relics.map(r => `<span class="relic${r.exhausted ? ' ex' : ''}" title="${r.exhausted ? 'Exhausted relic' : 'Relic'}">${RELIC_ICON}${esc(relicName(r.id))}</span>`).join('')}</div>`);
-  return `<div class="goods">${rows.join('')}${notesRows(st, g)}</div>`;
+  return `<div class="goods">${rows.join('')}</div>`;
 }
 function showTrades(doPin, dir){
   const g = games[group]; if (!g) return;
@@ -942,7 +942,7 @@ function showTrades(doPin, dir){
   });
   const gap = parseFloat(getComputedStyle(document.body).getPropertyValue('--gap')) || 12;
   const HEAD = 24 + 44, CAP = 22, OFF = .14;   // +44: room for the note under the grid   // OFF: how far each extra promissory note in a stack is offset (share of column width)
-  const GOODS = 16 + 27 * Math.max(...cols.map(c => { const s = c.p.stats || {}; return 3 + (s.frags && Object.keys(s.frags).length ? 1 : 0) + (s.relics && s.relics.length ? 1 : 0) + (s.pnPlay && s.pnPlay.length ? 1.4 : 0); }));
+  const GOODS = 16 + 27 * Math.max(...cols.map(c => { const s = c.p.stats || {}; return 2 + (s.frags && Object.keys(s.frags).length ? 1 : 0) + (s.relics && s.relics.length ? 1 : 0) ; }));
   const W = stage.clientWidth, H = stage.clientHeight;
   const pnW = col => col.pns.length > 1 ? 1 - OFF * (col.pns.length - 1) : 1;   // stacked notes shrink a little so the stack fits the column
   // height of a column's cards per pixel of column width: commander, then the note stack
