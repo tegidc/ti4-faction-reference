@@ -1,0 +1,2732 @@
+[
+ {
+  "key": "arborec",
+  "name": "Arborec",
+  "full": "The Arborec",
+  "sort": "Arborec",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/arborec/reference-card-te-arbo.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/arborec/sheet-arborec.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/arborec/mech-arbo-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/arborec/tech-arbo-bioplasmosis.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "bioplasmis"
+   },
+   {
+    "src": "cards/arborec/tech-arbo-letani-2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "letani-ii"
+   },
+   {
+    "src": "cards/arborec/promissory-note-arbo-pn-omega.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/arborec/leader-arbo-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/arborec/leader-arbo-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/arborec/leader-arbo-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/arborec/breakthrough-arborec.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/arborec/thumb.webp"
+ },
+ {
+  "key": "argent",
+  "name": "Argent Flight",
+  "full": "The Argent Flight",
+  "sort": "Argent",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/argent/reference-card-te-argent.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/argent/sheet-argent.webp",
+    "w": 1600,
+    "h": 1096,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/argent/mech-argent-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/argent/tech-argent-tech-aerie.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "aerie-hololattice"
+   },
+   {
+    "src": "cards/argent/tech-argent-tech-swa2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "swa-ii"
+   },
+   {
+    "src": "cards/argent/promissory-note-argent-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/argent/leader-argent-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/argent/leader-argent-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/argent/leader-argent-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/argent/breakthrough-argent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/argent/thumb.webp"
+ },
+ {
+  "key": "creuss",
+  "name": "Ghosts of Creuss",
+  "full": "The Ghosts of Creuss",
+  "sort": "Creuss",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/creuss/reference-card-te-creus.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/creuss/sheet-ghosts.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/creuss/mech-ghosts-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/creuss/tech-creuss-wg-omega.webp",
+    "w": 750,
+    "h": 488,
+    "kind": "Faction tech",
+    "key": "wormhole-generator"
+   },
+   {
+    "src": "cards/creuss/tech-creuss-dim-splicer.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "dim-splicer"
+   },
+   {
+    "src": "cards/creuss/promissory-note-ghosts-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/creuss/leader-creuss-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/creuss/leader-creuss-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/creuss/leader-creuss-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/creuss/breakthrough-ghosts.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/creuss/thumb.webp"
+ },
+ {
+  "key": "crimson",
+  "name": "Crimson Rebellion",
+  "full": "The Crimson Rebellion",
+  "sort": "Crimson",
+  "edition": "te",
+  "overview": [
+   {
+    "src": "cards/crimson/reference-card-te-crimson.webp",
+    "w": 1400,
+    "h": 816,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/crimson/sheet-rebellion.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/crimson/mech-crimson.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/crimson/tech-cr-sas.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "subatomic-splicer"
+   },
+   {
+    "src": "cards/crimson/tech-cr-exile-ii.webp",
+    "w": 822,
+    "h": 537,
+    "kind": "Faction tech",
+    "key": "exile-ii"
+   },
+   {
+    "src": "cards/crimson/promissory-note-cr.webp",
+    "w": 300,
+    "h": 462,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/crimson/leader-cr-agent.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/crimson/leader-crimson-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/crimson/leader-cr-hero.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/crimson/breakthrough-crimson.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/crimson/thumb.webp"
+ },
+ {
+  "key": "deepwrought",
+  "name": "Deepwrought Scholarate",
+  "full": "The Deepwrought Scholarate",
+  "sort": "Deepwrought",
+  "edition": "te",
+  "overview": [
+   {
+    "src": "cards/deepwrought/reference-card-te-dws.webp",
+    "w": 1400,
+    "h": 816,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/deepwrought/sheet-deepwrought.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/deepwrought/mech-dws.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/deepwrought/tech-dws-ra.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "radical-advancement"
+   },
+   {
+    "src": "cards/deepwrought/tech-dws-htm.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "hydrothermal-mining"
+   },
+   {
+    "src": "cards/deepwrought/promissory-note-dws.webp",
+    "w": 300,
+    "h": 462,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/deepwrought/leader-dws-agent.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/deepwrought/leader-dws-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/deepwrought/leader-dws-hero.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/deepwrought/breakthrough-dws.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   },
+   {
+    "src": "cards/deepwrought/planet-dws-ocean-00.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "ocean-1"
+   },
+   {
+    "src": "cards/deepwrought/planet-dws-ocean-01.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "ocean-2"
+   },
+   {
+    "src": "cards/deepwrought/planet-dws-ocean-02.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "ocean-3"
+   },
+   {
+    "src": "cards/deepwrought/planet-dws-ocean-03.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "ocean-4"
+   },
+   {
+    "src": "cards/deepwrought/planet-dws-ocean-04.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "ocean-5"
+   }
+  ],
+  "thumb": "cards/deepwrought/thumb.webp"
+ },
+ {
+  "key": "empyrean",
+  "name": "Empyrean",
+  "full": "The Empyrean",
+  "sort": "Empyrean",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/empyrean/reference-card-te-empyrean.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/empyrean/sheet-empyrean.webp",
+    "w": 1600,
+    "h": 1096,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/empyrean/mech-empy-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/empyrean/tech-empy-tech-aetherstream.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "aetherstream"
+   },
+   {
+    "src": "cards/empyrean/tech-empy-tech-voidwatch.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "voidwatch"
+   },
+   {
+    "src": "cards/empyrean/promissory-note-empy-pn-blood-pact.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn-blood-pact"
+   },
+   {
+    "src": "cards/empyrean/promissory-note-empy-pn-dark-pact.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn-dark-pact"
+   },
+   {
+    "src": "cards/empyrean/leader-empy-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/empyrean/leader-empy-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/empyrean/leader-empy-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/empyrean/breakthrough-empyrean.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/empyrean/thumb.webp"
+ },
+ {
+  "key": "firmament",
+  "name": "Firmament / Obsidian",
+  "full": "The Firmament / The Obsidian",
+  "sort": "Firmament / Obsidian",
+  "edition": "te",
+  "overview": [
+   {
+    "src": "cards/firmament/reference-card-te-firmament-obsidian.webp",
+    "w": 1400,
+    "h": 816,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/firmament/sheet-firmament.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet-firmament"
+   },
+   {
+    "src": "cards/firmament/sheet-obsidian.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet-obsidian"
+   },
+   {
+    "src": "cards/firmament/mech-firmament.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech-firmament"
+   },
+   {
+    "src": "cards/firmament/mech-obsidian.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech-obsidian"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/firmament/tech-firmament-ps.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "plane-splitter-firmament"
+   },
+   {
+    "src": "cards/firmament/tech-firmament-np.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "neural-parasite-firmament"
+   },
+   {
+    "src": "cards/firmament/tech-obsidian-ps.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "plane-splitter-obsidian"
+   },
+   {
+    "src": "cards/firmament/tech-obsidian-np.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "neural-parasite-obsidian"
+   },
+   {
+    "src": "cards/firmament/promissory-note-firmament-pn.webp",
+    "w": 300,
+    "h": 462,
+    "kind": "Promissory note",
+    "key": "pn-firmament"
+   },
+   {
+    "src": "cards/firmament/promissory-note-obsidian-pn.webp",
+    "w": 300,
+    "h": 462,
+    "kind": "Promissory note",
+    "key": "pn-obsidian"
+   },
+   {
+    "src": "cards/firmament/promissory-note-firmament-plot-00.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "plot-1"
+   },
+   {
+    "src": "cards/firmament/promissory-note-firmament-plot-01.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "plot-2"
+   },
+   {
+    "src": "cards/firmament/promissory-note-firmament-plot-02.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "plot-3"
+   },
+   {
+    "src": "cards/firmament/promissory-note-firmament-plot-03.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "plot-4"
+   },
+   {
+    "src": "cards/firmament/promissory-note-firmament-plot-04.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "plot-5"
+   },
+   {
+    "src": "cards/firmament/leader-firmament-agent.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "agent-firmament"
+   },
+   {
+    "src": "cards/firmament/leader-firmament-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-firmament-front"
+   },
+   {
+    "src": "cards/firmament/leader-firmament-hero.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "hero-firmament"
+   },
+   {
+    "src": "cards/firmament/leader-obsidian-agent.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "agent-obsidian"
+   },
+   {
+    "src": "cards/firmament/leader-obsidian-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-obsidian-front"
+   },
+   {
+    "src": "cards/firmament/leader-obsidian-hero.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "hero-obsidian"
+   },
+   {
+    "src": "cards/firmament/breakthrough-firmament.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough-firmament"
+   },
+   {
+    "src": "cards/firmament/breakthrough-obsidian.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough-obsidian"
+   }
+  ],
+  "thumb": "cards/firmament/thumb.webp"
+ },
+ {
+  "key": "hacan",
+  "name": "Emirates of Hacan",
+  "full": "The Emirates of Hacan",
+  "sort": "Hacan",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/hacan/reference-card-te-hacan.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/hacan/sheet-hacan.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/hacan/mech-hacan-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/hacan/tech-hacan-production-biomes.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "biomes"
+   },
+   {
+    "src": "cards/hacan/tech-hacan-qdn.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "qdn"
+   },
+   {
+    "src": "cards/hacan/promissory-note-hacan-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/hacan/leader-hacan-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/hacan/leader-hacan-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/hacan/leader-hacan-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/hacan/breakthrough-hacan.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/hacan/thumb.webp"
+ },
+ {
+  "key": "jol-nar",
+  "name": "Universities of Jol-Nar",
+  "full": "The Universities of Jol-Nar",
+  "sort": "Jol-Nar",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/jol-nar/reference-card-te-jolnar.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/jol-nar/sheet-jol-nar.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/jol-nar/mech-jolnar-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/jol-nar/tech-jolnar-tech-eres.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "eres"
+   },
+   {
+    "src": "cards/jol-nar/tech-jolnar-tech-scc.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "scc"
+   },
+   {
+    "src": "cards/jol-nar/promissory-note-jolnar-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/jol-nar/leader-jolnar-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/jol-nar/leader-jn-commander-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/jol-nar/leader-jolnar-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/jol-nar/breakthrough-jn.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/jol-nar/thumb.webp"
+ },
+ {
+  "key": "keleres",
+  "name": "Council Keleres",
+  "full": "The Council Keleres",
+  "sort": "Keleres",
+  "edition": "codex3",
+  "overview": [
+   {
+    "src": "cards/keleres/reference-card-te-keleres.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/keleres/sheet-keleres-te.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/keleres/mech-keleres-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/keleres/tech-keleres-tech-iihq.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "tech-iihq"
+   },
+   {
+    "src": "cards/keleres/tech-keleres-xo-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "tech-xo"
+   },
+   {
+    "src": "cards/keleres/tech-keleres-asn-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "asn"
+   },
+   {
+    "src": "cards/keleres/promissory-note-keleres-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/keleres/leader-keleres-agent-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/keleres/leader-keleres-commander-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/keleres/leader-keleres-argent-hero-te.webp",
+    "w": 750,
+    "h": 487,
+    "kind": "Leader",
+    "key": "hero-argent"
+   },
+   {
+    "src": "cards/keleres/leader-keleres-mentak-hero-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero-mentak"
+   },
+   {
+    "src": "cards/keleres/leader-keleres-xxcha-hero-te.webp",
+    "w": 750,
+    "h": 487,
+    "kind": "Leader",
+    "key": "hero-xxcha"
+   },
+   {
+    "src": "cards/keleres/breakthrough-keleres.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   },
+   {
+    "src": "cards/keleres/planet-keleres-tech-custodia-planet-te.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "iihq-planet"
+   },
+   {
+    "src": "cards/keleres/legendary-planet-ability-keleres-tech-custodia-ability-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Legendary planet",
+    "key": "iihq-planet-ability"
+   }
+  ],
+  "thumb": "cards/keleres/thumb.webp"
+ },
+ {
+  "key": "l1z1x",
+  "name": "L1Z1X Mindnet",
+  "full": "The L1Z1X Mindnet",
+  "sort": "L1Z1X",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/l1z1x/reference-card-te-l1.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/l1z1x/sheet-l1.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/l1z1x/mech-l1-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/l1z1x/tech-l1-tech-inheritance.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "inheritance-systems"
+   },
+   {
+    "src": "cards/l1z1x/tech-l1-super-dread-2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "super-dread-ii"
+   },
+   {
+    "src": "cards/l1z1x/promissory-note-l1-pn-omega.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/l1z1x/leader-l1-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/l1z1x/leader-l1-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/l1z1x/leader-l1-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/l1z1x/breakthrough-l1.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/l1z1x/thumb.webp"
+ },
+ {
+  "key": "bastion",
+  "name": "Last Bastion",
+  "full": "Last Bastion",
+  "sort": "Last Bastion",
+  "edition": "te",
+  "overview": [
+   {
+    "src": "cards/bastion/reference-card-te-bastion.webp",
+    "w": 1400,
+    "h": 816,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/bastion/sheet-bastion.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/bastion/mech-bastion.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/bastion/tech-bastion-ptv.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "proximity-targeting"
+   },
+   {
+    "src": "cards/bastion/tech-bastion-helios-2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "helios-ii"
+   },
+   {
+    "src": "cards/bastion/promissory-note-bastion.webp",
+    "w": 300,
+    "h": 462,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/bastion/leader-bastion-agent.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/bastion/leader-bastion-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/bastion/leader-bastion-hero.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/bastion/breakthrough-bastion.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   },
+   {
+    "src": "cards/bastion/legendary-planet-ability-bastion-ordinian-ability.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Legendary planet",
+    "key": "ordinian-ability"
+   }
+  ],
+  "thumb": "cards/bastion/thumb.webp"
+ },
+ {
+  "key": "letnev",
+  "name": "Barony of Letnev",
+  "full": "The Barony of Letnev",
+  "sort": "Letnev",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/letnev/reference-card-te-letnev.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/letnev/sheet-barony.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/letnev/mech-barony-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/letnev/tech-barony-l4.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "l4"
+   },
+   {
+    "src": "cards/letnev/tech-barony-nes.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "nes"
+   },
+   {
+    "src": "cards/letnev/promissory-note-barony-pn-omega.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/letnev/leader-barony-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/letnev/leader-barony-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/letnev/leader-barony-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/letnev/breakthrough-letnev.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/letnev/thumb.webp"
+ },
+ {
+  "key": "mahact",
+  "name": "Mahact Gene-Sorcerers",
+  "full": "The Mahact Gene-Sorcerers",
+  "sort": "Mahact",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/mahact/reference-card-te-mahact.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/mahact/sheet-mahact.webp",
+    "w": 1600,
+    "h": 1096,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/mahact/mech-mahact-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/mahact/tech-mahact-tech-gr.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "genetic-recombination"
+   },
+   {
+    "src": "cards/mahact/tech-mahact-tech-cl2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "crimson-legionnaire-ii"
+   },
+   {
+    "src": "cards/mahact/promissory-note-mahact-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/mahact/leader-mahact-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/mahact/leader-mahact-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/mahact/leader-mahact-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/mahact/breakthrough-mahact.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/mahact/thumb.webp"
+ },
+ {
+  "key": "mentak",
+  "name": "Mentak Coalition",
+  "full": "The Mentak Coalition",
+  "sort": "Mentak",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/mentak/reference-card-te-mentak.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/mentak/sheet-mentak.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/mentak/mech-mentak-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/mentak/tech-mentak-tech-salvage.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "salvage-ops"
+   },
+   {
+    "src": "cards/mentak/tech-mentak-tech-mc.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "mirror-computing"
+   },
+   {
+    "src": "cards/mentak/promissory-note-mentak-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/mentak/leader-mentak-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/mentak/leader-mentak-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/mentak/leader-mentak-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/mentak/breakthrough-mentak.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough-front"
+   }
+  ],
+  "thumb": "cards/mentak/thumb.webp"
+ },
+ {
+  "key": "muaat",
+  "name": "Embers of Muaat",
+  "full": "The Embers of Muaat",
+  "sort": "Muaat",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/muaat/reference-card-te-muaat.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/muaat/sheet-muaat.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/muaat/mech-muaat-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/muaat/tech-muaat-magmus-omega.webp",
+    "w": 750,
+    "h": 488,
+    "kind": "Faction tech",
+    "key": "magmus-reactor"
+   },
+   {
+    "src": "cards/muaat/tech-muaat-ptws-2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "ptws-ii"
+   },
+   {
+    "src": "cards/muaat/promissory-note-muaat-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/muaat/leader-muaat-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/muaat/leader-muaat-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/muaat/leader-muaat-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/muaat/breakthrough-muaat.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   },
+   {
+    "src": "cards/muaat/planet-muaat-avernus.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Planet",
+    "key": "avernus-planet"
+   },
+   {
+    "src": "cards/muaat/legendary-planet-ability-muaat-avernus-ability.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Legendary planet",
+    "key": "avernus-ability"
+   }
+  ],
+  "thumb": "cards/muaat/thumb.webp"
+ },
+ {
+  "key": "naalu",
+  "name": "Naalu Collective",
+  "full": "The Naalu Collective",
+  "sort": "Naalu",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/naalu/reference-card-te-naalu.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/naalu/sheet-naalu.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/naalu/mech-naalu-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/naalu/tech-naalu-tech-neuroglaive.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "neuroglaive"
+   },
+   {
+    "src": "cards/naalu/tech-naalu-tech-hcf2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "hcf-ii"
+   },
+   {
+    "src": "cards/naalu/promissory-note-naalu-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/naalu/leader-naalu-agent-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/naalu/leader-naalu-commander-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/naalu/leader-naalu-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/naalu/breakthrough-naalu.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/naalu/thumb.webp"
+ },
+ {
+  "key": "naaz-rokha",
+  "name": "Naaz-Rokha Alliance",
+  "full": "The Naaz-Rokha Alliance",
+  "sort": "Naaz-Rokha",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/naaz-rokha/reference-card-te-naaz.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/naaz-rokha/sheet-nra.webp",
+    "w": 1600,
+    "h": 1096,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/naaz-rokha/mech-nra-mech-ground.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech-front"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/naaz-rokha/tech-nra-tech-supercharge.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "supercharge"
+   },
+   {
+    "src": "cards/naaz-rokha/tech-nra-tech-prefab.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "prefab"
+   },
+   {
+    "src": "cards/naaz-rokha/promissory-note-nra-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/naaz-rokha/leader-nra-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/naaz-rokha/leader-nra-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/naaz-rokha/leader-nra-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/naaz-rokha/breakthrough-naaz-front.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough-front"
+   }
+  ],
+  "thumb": "cards/naaz-rokha/thumb.webp"
+ },
+ {
+  "key": "nekro",
+  "name": "Nekro Virus",
+  "full": "The Nekro Virus",
+  "sort": "Nekro",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/nekro/reference-card-te-nekro.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/nekro/sheet-nekro.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/nekro/mech-nekro-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/nekro/tech-nekro-tech-valefar-x.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "va-x"
+   },
+   {
+    "src": "cards/nekro/tech-nekro-tech-valefar-y.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "va-y"
+   },
+   {
+    "src": "cards/nekro/promissory-note-nekro-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/nekro/leader-nekro-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/nekro/leader-nekro-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/nekro/leader-nekro-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/nekro/breakthrough-nekro.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/nekro/thumb.webp"
+ },
+ {
+  "key": "nomad",
+  "name": "Nomad",
+  "full": "The Nomad",
+  "sort": "Nomad",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/nomad/reference-card-te-nomad.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/nomad/sheet-nomad.webp",
+    "w": 1600,
+    "h": 1096,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/nomad/mech-nomad-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/nomad/tech-nomad-tech-tcs.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "tcs"
+   },
+   {
+    "src": "cards/nomad/tech-nomad-tech-mem2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "memoria-ii"
+   },
+   {
+    "src": "cards/nomad/promissory-note-nomad-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/nomad/leader-nomad-artuno.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "artuno"
+   },
+   {
+    "src": "cards/nomad/leader-nomad-mercer.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "mercer"
+   },
+   {
+    "src": "cards/nomad/leader-nomad-thundarian.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "thundarian"
+   },
+   {
+    "src": "cards/nomad/leader-nomad-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/nomad/leader-nomad-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/nomad/breakthrough-nomad.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/nomad/thumb.webp"
+ },
+ {
+  "key": "ral-nel",
+  "name": "Ral Nel Consortium",
+  "full": "The Ral Nel Consortium",
+  "sort": "Ral Nel",
+  "edition": "te",
+  "overview": [
+   {
+    "src": "cards/ral-nel/reference-card-te-rn.webp",
+    "w": 1400,
+    "h": 816,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/ral-nel/sheet-ralnel.webp",
+    "w": 1800,
+    "h": 1213,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/ral-nel/mech-rn.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/ral-nel/tech-rn-nanomachines.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Faction tech",
+    "key": "nanomachines"
+   },
+   {
+    "src": "cards/ral-nel/tech-rn-linkship-2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "linkship-ii"
+   },
+   {
+    "src": "cards/ral-nel/promissory-note-rn.webp",
+    "w": 300,
+    "h": 462,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/ral-nel/leader-rn-agent.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/ral-nel/leader-rn-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/ral-nel/leader-rn-hero.webp",
+    "w": 462,
+    "h": 300,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/ral-nel/breakthrough-rn.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/ral-nel/thumb.webp"
+ },
+ {
+  "key": "saar",
+  "name": "Clan of Saar",
+  "full": "The Clan of Saar",
+  "sort": "Saar",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/saar/reference-card-te-saar.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/saar/sheet-saar.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/saar/mech-saar-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/saar/tech-saar-chaosmapping.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "chaos-mapping"
+   },
+   {
+    "src": "cards/saar/tech-saar-ff-2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "ff-ii"
+   },
+   {
+    "src": "cards/saar/promissory-note-saar-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/saar/leader-saar-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/saar/leader-saar-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/saar/leader-saar-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/saar/breakthrough-saar.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/saar/thumb.webp"
+ },
+ {
+  "key": "norr",
+  "name": "Sardakk N'orr",
+  "full": "Sardakk N\u2019orr",
+  "sort": "Sardakk N'orr",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/norr/reference-card-te-norr.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/norr/sheet-sardakk.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/norr/mech-norr-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/norr/tech-norr-tech-vpw.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "vpw"
+   },
+   {
+    "src": "cards/norr/tech-norr-tech-exo2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "exotrireme-ii"
+   },
+   {
+    "src": "cards/norr/promissory-note-norr-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/norr/leader-norr-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/norr/leader-norr-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/norr/leader-norr-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/norr/breakthrough-norr.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/norr/thumb.webp"
+ },
+ {
+  "key": "sol",
+  "name": "Federation of Sol",
+  "full": "The Federation of Sol",
+  "sort": "Sol",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/sol/reference-card-te-sol.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/sol/sheet-sol.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/sol/mech-sol-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/sol/tech-sol-ac2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "ac-ii"
+   },
+   {
+    "src": "cards/sol/tech-sol-specops2.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "spec-ops-ii"
+   },
+   {
+    "src": "cards/sol/promissory-note-sol-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn-sol"
+   },
+   {
+    "src": "cards/sol/leader-sol-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/sol/leader-sol-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/sol/leader-sol-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/sol/breakthrough-sol.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/sol/thumb.webp"
+ },
+ {
+  "key": "ul",
+  "name": "Titans of Ul",
+  "full": "The Titans of Ul",
+  "sort": "Titans of Ul",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/ul/reference-card-te-ul.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/ul/sheet-titans.webp",
+    "w": 1600,
+    "h": 1096,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/ul/mech-titans-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/ul/tech-titans-tech-se2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "saturn-engine-ii"
+   },
+   {
+    "src": "cards/ul/tech-titans-tech-ht2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "hel-titan-ii"
+   },
+   {
+    "src": "cards/ul/promissory-note-titans-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/ul/leader-titans-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/ul/leader-titans-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/ul/leader-titans-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/ul/breakthrough-ul.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/ul/thumb.webp"
+ },
+ {
+  "key": "vuilraith",
+  "name": "Vuil'raith Cabal",
+  "full": "The Vuil\u2019Raith Cabal",
+  "sort": "Vuil'raith",
+  "edition": "pok",
+  "overview": [
+   {
+    "src": "cards/vuilraith/reference-card-te-cabal.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/vuilraith/sheet-cabal.webp",
+    "w": 1421,
+    "h": 969,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/vuilraith/mech-cabal-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/vuilraith/tech-cabal-tech-vortex.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "vortext"
+   },
+   {
+    "src": "cards/vuilraith/tech-cabal-tech-dimtear2.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Faction tech",
+    "key": "dim-tear-ii"
+   },
+   {
+    "src": "cards/vuilraith/promissory-note-cabal-pn.webp",
+    "w": 500,
+    "h": 750,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/vuilraith/leader-cabal-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/vuilraith/leader-cabal-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/vuilraith/leader-cabal-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/vuilraith/breakthrough-cabal.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/vuilraith/thumb.webp"
+ },
+ {
+  "key": "winnu",
+  "name": "Winnu",
+  "full": "The Winnu",
+  "sort": "Winnu",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/winnu/reference-card-te-winnu.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/winnu/sheet-winnu.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/winnu/mech-winnu-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/winnu/tech-winnu-tech-lgf.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "lgf"
+   },
+   {
+    "src": "cards/winnu/tech-winno-tech-hegemonic.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "hegemonic"
+   },
+   {
+    "src": "cards/winnu/promissory-note-winnu-pn-omega.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/winnu/leader-winnu-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/winnu/leader-winnu-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/winnu/leader-winnu-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/winnu/breakthrough-winnu.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/winnu/thumb.webp"
+ },
+ {
+  "key": "xxcha",
+  "name": "Xxcha Kingdom",
+  "full": "The Xxcha Kingdom",
+  "sort": "Xxcha",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/xxcha/reference-card-te-xxcha.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/xxcha/sheet-xxcha.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/xxcha/mech-xxcha-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/xxcha/tech-xxcha-null-field.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "null-field"
+   },
+   {
+    "src": "cards/xxcha/tech-xxcha-tech-it.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "instinct-training"
+   },
+   {
+    "src": "cards/xxcha/promissory-note-xxcha-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/xxcha/leader-xxcha-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/xxcha/leader-xxcha-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/xxcha/leader-xxcha-hero-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/xxcha/breakthrough-xxcha.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/xxcha/thumb.webp"
+ },
+ {
+  "key": "yin",
+  "name": "Yin Brotherhood",
+  "full": "The Yin Brotherhood",
+  "sort": "Yin",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/yin/reference-card-te-yin.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/yin/sheet-yin.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/yin/mech-yin-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/yin/tech-yin-spinner-omega.webp",
+    "w": 750,
+    "h": 488,
+    "kind": "Faction tech",
+    "key": "yin-spinner"
+   },
+   {
+    "src": "cards/yin/tech-yin-impulse-core.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "impulse-core"
+   },
+   {
+    "src": "cards/yin/promissory-note-yin-pn-omega.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/yin/leader-yin-agent-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/yin/leader-yin-commander-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/yin/leader-yin-hero-te.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/yin/breakthrough-yin.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/yin/thumb.webp"
+ },
+ {
+  "key": "yssaril",
+  "name": "Yssaril Tribes",
+  "full": "The Yssaril Tribes",
+  "sort": "Yssaril",
+  "edition": "base",
+  "overview": [
+   {
+    "src": "cards/yssaril/reference-card-te-yssaril.webp",
+    "w": 1000,
+    "h": 583,
+    "kind": "reference-card",
+    "key": "reference-card"
+   }
+  ],
+  "units": [
+   {
+    "src": "cards/yssaril/sheet-yssaril.webp",
+    "w": 1291,
+    "h": 878,
+    "kind": "Faction sheet",
+    "key": "sheet"
+   },
+   {
+    "src": "cards/yssaril/mech-yssaril-mech.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Mech",
+    "key": "mech"
+   }
+  ],
+  "special": [
+   {
+    "src": "cards/yssaril/tech-yssaril-tsp.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "tsp"
+   },
+   {
+    "src": "cards/yssaril/tech-yssaril-mageon.webp",
+    "w": 759,
+    "h": 494,
+    "kind": "Faction tech",
+    "key": "mageon"
+   },
+   {
+    "src": "cards/yssaril/promissory-note-yssaril-pn.webp",
+    "w": 490,
+    "h": 752,
+    "kind": "Promissory note",
+    "key": "pn"
+   },
+   {
+    "src": "cards/yssaril/leader-yssaril-agent.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "agent"
+   },
+   {
+    "src": "cards/yssaril/leader-yssaril-commander.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "commander-front"
+   },
+   {
+    "src": "cards/yssaril/leader-yssaril-hero.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Leader",
+    "key": "hero"
+   },
+   {
+    "src": "cards/yssaril/breakthrough-yssaril.webp",
+    "w": 750,
+    "h": 500,
+    "kind": "Breakthrough",
+    "key": "breakthrough"
+   }
+  ],
+  "thumb": "cards/yssaril/thumb.webp"
+ }
+]

@@ -1,0 +1,124 @@
+{
+ "crimson": {
+  "commander": "Place a breach token in a system that contains another player's unit",
+  "hero": "Have 3 scored objectives"
+ },
+ "arborec": {
+  "commander": "Have 12 ground forces on planets you control",
+  "hero": "Have 3 scored objectives"
+ },
+ "argent": {
+  "commander": "Have 6 units that have ANTI-FIGHTER BARRAGE, SPACE CANNON, or BOMBARDMENT on the game board",
+  "hero": "Have 3 scored objectives"
+ },
+ "vuilraith": {
+  "commander": "Have units in 3 gravity rifts",
+  "hero": "Have 3 scored objectives"
+ },
+ "creuss": {
+  "commander": "Have units in 3 systems that contain alpha or beta wormholes",
+  "hero": "Have 3 scored objectives"
+ },
+ "empyrean": {
+  "commander": "Be neighbors with all other players",
+  "hero": "Have 3 scored objectives"
+ },
+ "hacan": {
+  "commander": "Have 10 trade goods",
+  "hero": "Have 3 scored objectives"
+ },
+ "jol-nar": {
+  "commander": "Own 8 technologies",
+  "hero": "Have 3 scored objectives"
+ },
+ "keleres": {
+  "commander": "Spend 1 trade good after you play an action card that has a component action",
+  "hero": "Have 3 scored objectives"
+ },
+ "l1z1x": {
+  "commander": "Have 4 dreadnoughts on the game board",
+  "hero": "Have 3 scored objectives"
+ },
+ "letnev": {
+  "commander": "Have 5 non-fighter ships in 1 system",
+  "hero": "Have 3 scored objectives"
+ },
+ "mahact": {
+  "commander": "Have 2 other factions' command tokens in your fleet pool",
+  "hero": "Have 3 scored objectives"
+ },
+ "mentak": {
+  "commander": "Have 4 cruisers on the game board",
+  "hero": "Have 3 scored objectives"
+ },
+ "muaat": {
+  "commander": "Produce a war sun",
+  "hero": "Have 3 scored objectives"
+ },
+ "naalu": {
+  "commander": "Have ground forces in or adjacent to the Mecatol Rex system",
+  "hero": "Have 3 scored objectives"
+ },
+ "naaz-rokha": {
+  "commander": "Have mechs in 3 systems",
+  "hero": "Have 3 scored objectives"
+ },
+ "nekro": {
+  "commander": "Own 3 technologies. A \"Valefar Assimilator\" technology counts only if its X or Y token is on a technology",
+  "hero": "Have 3 scored objectives"
+ },
+ "nomad": {
+  "commander": "Have 1 scored secret objective",
+  "hero": "Have 3 scored objectives"
+ },
+ "saar": {
+  "commander": "Have 3 space docks on the game board",
+  "hero": "Have 3 scored objectives"
+ },
+ "norr": {
+  "commander": "Control 5 planets in non-home systems",
+  "hero": "Have 3 scored objectives"
+ },
+ "sol": {
+  "commander": "Control planets that have a combined total of at least 12 resources",
+  "hero": "Have 3 scored objectives"
+ },
+ "ul": {
+  "commander": "Have 5 structures on the game board",
+  "hero": "Have 3 scored objectives"
+ },
+ "winnu": {
+  "commander": "Control Mecatol Rex or enter into a combat in the Mecatol Rex system",
+  "hero": "Have 3 scored objectives"
+ },
+ "xxcha": {
+  "commander": "Control planets that have a combined total of at least 12 influence",
+  "hero": "Have 3 scored objectives"
+ },
+ "yin": {
+  "commander": "Use one of your faction abilities",
+  "hero": "Have 3 scored objectives"
+ },
+ "yssaril": {
+  "commander": "Have 7 action cards",
+  "hero": "Have 3 scored objectives"
+ },
+ "bastion": {
+  "commander": "There are 3 galvanized units on the game board",
+  "hero": "Have 3 scored objectives"
+ },
+ "deepwrought": {
+  "commander": "Have an ocean card in play",
+  "hero": "Have 3 scored objectives"
+ },
+ "ral-nel": {
+  "commander": "Be the last player to pass during the action phase",
+  "hero": "Have 3 scored objectives"
+ },
+ "firmament": {
+  "commander-firmament": "Have a plot card in play",
+  "hero-firmament": "Have 3 scored objectives",
+  "commander-obsidian": "Have units in The Fracture",
+  "hero-obsidian": "Have 3 scored objectives"
+ }
+}
