@@ -474,6 +474,7 @@ function setGroup(gi){
     c.onclick = e => {
       e.stopPropagation();
       if (!clearArmed){ clearArmed = true; c.innerHTML = '<span>✕</span>Sure?'; c.classList.add('armed'); return; }
+      hiddenGames = [...new Set([...hiddenGames, g.code.toLowerCase()])]; saveHidden();   // so a shared game doesn't come back
       games.splice(gi, 1); saveGames(); gameAt = 0; setGroup(ALL); updateStar();
     };
     c.addEventListener('mouseleave', () => { if (clearArmed){ clearArmed = false; c.innerHTML = '<span>✕</span>Remove game'; c.classList.remove('armed'); } });
@@ -623,6 +624,46 @@ async function refreshGames(force){
 setInterval(() => { if (!document.hidden) refreshGames(false); }, 20000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshGames(false); });
 setTimeout(() => refreshGames(true), 800);
+
+// ---------- shared games: games.json on the site (the group's games) + share links (#game=pbd14000) ----------
+let hiddenGames = [];
+try { hiddenGames = JSON.parse(localStorage.getItem('ti4-hidden-games') || '[]'); } catch (_) {}
+const saveHidden = () => { try { localStorage.setItem('ti4-hidden-games', JSON.stringify(hiddenGames)); } catch (_) {} };
+const hasGame = c => games.some(g => g.code.toLowerCase() === c.toLowerCase());
+async function addCodes(codes, openCode){
+  let added = false;
+  for (const code of codes){
+    if (hasGame(code)) continue;
+    try {
+      const d = await fetchGame(code);
+      if (!Array.isArray(d.playerData)) continue;
+      const { g } = gameFromData(d, code); g.live = true; g.checked = Date.now();
+      games.push(g); added = true;
+    } catch (_) { if (code === openCode) flash(`Couldn't load game ${code} from AsyncTI4.`); }
+  }
+  if (added) saveGames();
+  const oi = openCode ? games.findIndex(g => g.code.toLowerCase() === openCode.toLowerCase()) : -1;
+  if (oi >= 0){ setGroup(oi); showBoard(true); }
+  else if (added){
+    // nobody has picked anything yet: open the first shared game
+    if (group === ALL && current === -1){ setGroup(games.length - 1); showBoard(true); } else buildTabs();
+  }
+}
+async function loadSharedGames(){
+  try {
+    const r = await fetch('games.json', { cache:'no-store' });
+    if (!r.ok) return;
+    const list = await r.json();
+    const codes = (Array.isArray(list) ? list : list.games || []).map(x => typeof x === 'string' ? x : x.code).filter(Boolean);
+    await addCodes(codes.filter(c => !hiddenGames.includes(c.toLowerCase())));
+  } catch (_) {}   // no games.json (e.g. on claude.ai): nothing shared
+}
+setTimeout(loadSharedGames, 300);
+function copyGameLink(code){
+  const url = location.origin + location.pathname + '#game=' + encodeURIComponent(code);
+  const done = () => flash('Link copied: anyone who opens it gets this game tab.');
+  try { navigator.clipboard.writeText(url).then(done, () => prompt('Copy this link:', url)); } catch (_) { flash(url); }
+}
 const ago = ms => { const m = Math.round((Date.now() - ms) / 60000); return m < 1 ? 'just now' : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; };
 const turnOf = g => g && g.meta && g.meta.active ? Object.keys(g.players).find(k => g.players[k].color === g.meta.active) : null;
 
@@ -692,10 +733,12 @@ function showBoard(doPin, dir){
       <td>${v(s, 'planets')}</td><td>${v(s, 'res')}</td><td>${v(s, 'inf')}</td><td>${v(s, 'ac')}</td>
       <td${s ? ` title="+${s.fighters} fighters"` : ''}>${v(s, 'ships')}</td><td>${v(s, 'ground')}</td></tr>`).join('')}</tbody></table>
     <p class="lbnote">${g.live
-      ? `<span class="${g.failed ? 'bad' : 'live'}">●</span> ${g.failed ? "Couldn't reach AsyncTI4 just now" : 'Live'} · checked ${ago(g.checked || g.pasted)} · new moves show up within 2 minutes <button class="linkbtn" id="lbrefresh">Check now</button><br>Tap a player to see their faction.`
+      ? `<span class="${g.failed ? 'bad' : 'live'}">●</span> ${g.failed ? "Couldn't reach AsyncTI4 just now" : 'Live'} · checked ${ago(g.checked || g.pasted)} · new moves show up within 2 minutes <button class="linkbtn" id="lbrefresh">Check now</button> · <button class="linkbtn" id="lbshare">Copy link to this game</button><br>Tap a player to see their faction.`
       : rows.some(r => r.s) ? `Tap a player to see their faction. Numbers as of your paste${when ? ' on ' + when : ''}: add the game again with fresh data to update them.` : 'No stats yet: add this game again with its AsyncTI4 data to fill the table.'}</p>`;
   const rb = wrap.querySelector('#lbrefresh');
   if (rb) rb.onclick = e => { e.stopPropagation(); rb.textContent = 'Checking…'; refreshGames(true); };
+  const sb = wrap.querySelector('#lbshare');
+  if (sb) sb.onclick = e => { e.stopPropagation(); copyGameLink(g.code); };
   wrap.querySelectorAll('tr[data-i]').forEach(tr => tr.addEventListener('click', e => { e.stopPropagation(); pin(+tr.dataset.i); }));
   stage.replaceChildren(wrap); stage.scrollTop = 0;
 }
@@ -944,7 +987,13 @@ function saveHash(){
   try { history.replaceState(null, '', h ? '#' + h : location.pathname + location.search); } catch (_) {}
 }
 function readHash(){
-  const h = location.hash.slice(1); if (!h) return false;
+  const h = decodeURIComponent(location.hash.slice(1)); if (!h) return false;
+  const gm = h.match(/^game=([A-Za-z0-9_-]+)$/);
+  if (gm){   // share link: add that game and open it
+    hiddenGames = hiddenGames.filter(c => c !== gm[1].toLowerCase()); saveHidden();
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {}
+    addCodes([gm[1]], gm[1]); return true;
+  }
   const m = h.match(/^(.*?)(?:-(units|special))?$/), f = F.find(x => x.key === m[1]);
   if (!f) return false;
   view = m[2] || 'overview';
