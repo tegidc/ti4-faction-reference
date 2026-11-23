@@ -185,8 +185,8 @@
   .sct em { display:block; font-style:normal; font-size:9.5px; color:var(--dim); }
   .gal .ld.sc figcaption { -webkit-line-clamp:1; font-size:12px; }
   .gal .ld.sc figcaption b { color:var(--acc); }
-  /* picked and not yet played: full colour. played: kept in colour but darkened. not picked: black and white, ghosted */
-  .gal .ld.sc.played img { filter:brightness(.5) saturate(.8); }
+  /* picked and not yet played: full colour. played: faded, still in colour. not picked: faded and black and white */
+  .gal .ld.sc.played img { opacity:.45; filter:saturate(.75); }
   .gal .ld.sc.unpicked img { opacity:.4; filter:grayscale(1) brightness(.85); }
   .gal .ld.sc.unpicked img:hover, .gal .ld.sc.played img:hover { opacity:1; filter:none; }
   .gal .ld.sc.unpicked .tgs { opacity:.5; filter:saturate(.6) drop-shadow(0 2px 3px rgba(0,0,0,.6)); transition:opacity .15s; }   /* coins faded with the card */
