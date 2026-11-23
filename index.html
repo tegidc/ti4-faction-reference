@@ -395,7 +395,7 @@ const stage = $('stage'), row = $('row'), list = $('list'), q = $('q'), zoom = $
 const N = F.length, ALL = -1, LB = -2, SC = -3, TR = -4;   // LB / SC: the leaderboard or the strategy cards are showing instead of a faction
 F.forEach((f, i) => { f.i = i; f.g = ALL; });
 
-let group = ALL, view = 'overview', current = -1, pinned = false;
+let group = ALL, view = 'overview', current = -1, pinned = false, touched = false;
 
 // ---------- which expansions to show (remembered in this browser) ----------
 const EDS = [ { k:'base', label:'Base', title:'Base game' }, { k:'pok', label:'PoK', title:'Prophecy of Kings' },
@@ -545,7 +545,7 @@ function setGroup(gi){
   else if (current === TR){ if (gi >= 0 && g.factions.length) showTrades(pinned); else unpin(); }
   else if (current === LB){ if (gi >= 0 && g.factions.length) showBoard(pinned); else unpin(); }
   // switching to a game tab while looking at a faction that isn't in it: open on the leaderboard
-  else if (gi >= 0 && g.factions.length && current !== SC && current !== TR && !(current >= 0 && inGame(current, g))) showBoard(true);
+  else if (gi >= 0 && g.factions.length && current !== SC && current !== TR && !(current >= 0 && inGame(current, g))) showStrategy(true);
 }
 // mouse wheel scrolls the row sideways; drag to scroll on desktop too
 row.addEventListener('wheel', e => {
@@ -624,7 +624,7 @@ function putGame(g, unknown, open){
   if (open){
     closeAdd();
     setGroup(existing >= 0 ? existing : games.length - 1);
-    if (g.factions.length) showBoard(true);
+    if (g.factions.length) showStrategy(true);
   }
   if (unknown && unknown.length) flash(`Skipped ${unknown.length} faction${unknown.length > 1 ? 's' : ''} this page doesn't have: ${unknown.join(', ')}`);
 }
@@ -709,10 +709,10 @@ async function addCodes(codes, openCode){
   }
   if (added) saveGames();
   const oi = openCode ? games.findIndex(g => g.code.toLowerCase() === openCode.toLowerCase()) : -1;
-  if (oi >= 0){ setGroup(oi); showBoard(true); }
+  if (oi >= 0){ setGroup(oi); showStrategy(true); }
   else if (added){
     // nobody has picked anything yet: open the first shared game
-    if (group === ALL && current === -1){ setGroup(games.length - 1); showBoard(true); } else buildTabs();
+    if (group === ALL && current === SC && !touched){ setGroup(games.length - 1); showStrategy(true); } else buildTabs();
   }
 }
 async function loadSharedGames(){
@@ -922,6 +922,8 @@ const ICON = {
   ship:'<svg viewBox="0 0 24 24" class="ic"><path d="M12 2.5c3 2.6 4.5 6 4.5 10l2.5 3v3l-4-1.5h-6L5 18.5v-3l2.5-3c0-4 1.5-7.4 4.5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M10.5 20.5h3"/></svg>',
   ground:'<svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="5" r="2.5"/><path d="M8.5 21v-6l-2-1 1-5.5h9l1 5.5-2 1v6"/><path d="M17.5 8.5l1.5-5"/></svg>'
 };
+document.addEventListener('pointerdown', () => { touched = true; }, { capture:true });
+document.addEventListener('keydown', () => { touched = true; }, { capture:true });
 function pin(i, dir){ pinned = true; document.body.classList.add('pinned'); show(i, dir); markActive(true); saveHash(); }
 function unpin(){
   pinned = false; current = -1; markActive();
@@ -1180,9 +1182,10 @@ function readHash(){
 addEventListener('hashchange', readHash);
 
 setGroup(games.length && games[0].factions.length ? 0 : ALL);
-if (group >= 0 && !location.hash) showBoard(true);
+// the page opens on the strategy cards (with this round's picks when a game is showing)
+if (!location.hash) showStrategy(true);
 buildEds();
-if (!readHash() && isPhone() && current === -1) pin(visibleList()[0].i);
+if (!readHash() && current === -1) showStrategy(true);
 </script>
 </body>
 </html>
